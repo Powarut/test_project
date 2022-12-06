@@ -3,14 +3,19 @@ import 'package:test_project/constants/color.dart';
 
 class SingleItem extends StatefulWidget {
   bool isBool = false;
-  String? productImage;
-  String? productName;
-  int? productPrice;
-  SingleItem(
-      {required this.isBool,
-      required String productImage,
-      required String productName,
-      required int productPrice});
+  String productImage;
+  String productName;
+  int productPrice;
+  String productId;
+  int productQuantity;
+  SingleItem({
+    required this.isBool,
+    required this.productImage,
+    required this.productName,
+    required this.productPrice,
+    required this.productId,
+    required this.productQuantity,
+  });
 
   @override
   State<SingleItem> createState() => _SingleItemState();

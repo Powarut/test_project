@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:test_project/Cart/cart_model.dart';
 import 'package:test_project/constants/color.dart';
+import 'package:test_project/providers/reviewcart_provider.dart';
 import 'package:test_project/widgets/single_item.dart';
-
 
 class ReviewCart extends StatelessWidget {
   const ReviewCart({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    ReviewCartProvider reviewCartProvider = Provider.of(context);
+    reviewCartProvider.getReviewCartData();
     return Scaffold(
       bottomNavigationBar: ListTile(
         title: Text("ราคาทั้งหมด :"),
@@ -27,7 +31,7 @@ class ReviewCart extends StatelessWidget {
                 30,
               ),
             ),
-            onPressed: (){},
+            onPressed: () {},
           ),
         ),
       ),
@@ -38,23 +42,28 @@ class ReviewCart extends StatelessWidget {
           style: TextStyle(color: textColor, fontSize: 18),
         ),
       ),
-      body: ListView(
-        children: [
-          SizedBox(
-            height: 10,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          SingleItem(
-            isBool: true,
-            productImage: '',
-            productName: '',
-            productPrice: 2,
-          ),
-
-        ],
-      ),
+      body: reviewCartProvider.getReviewCartDataList.isEmpty?Center(
+        child: Text("ไม่มีข้อมูล"),
+      ):ListView.builder(
+          itemCount: reviewCartProvider.getReviewCartDataList.length,
+          itemBuilder: (context, index) {
+            ReviewCartModel data = reviewCartProvider.getReviewCartDataList[index];
+        return Column(
+          children: [
+            SizedBox(
+              height: 10,
+            ),
+            SingleItem(
+              isBool: true,
+              productImage: data.cartImage,
+              productName: data.cartName,
+              productPrice: data.cartPrice,
+              productId: data.cartId,
+              productQuantity: data.cartQuantity,
+            ),
+          ],
+        );
+      }),
     );
   }
 }

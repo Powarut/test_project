@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:test_project/Cart/cart_model.dart';
 
 class ReviewCartProvider with ChangeNotifier {
   void addReviewCartData({
@@ -21,6 +22,34 @@ class ReviewCartProvider with ChangeNotifier {
       "CartImage": cartImage,
       "CartPrice": cartPrice,
       "CartTotal": cartQuantity,
+    },
+    );
+  }
+  List<ReviewCartModel> reviewCartDataList = [];
+  void getReviewCartData() async {
+    List<ReviewCartModel> newList = [];
+
+    QuerySnapshot reviewCartValue = await FirebaseFirestore.instance
+        .collection("Food")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection("Cart")
+        .get();
+    reviewCartValue.docs.forEach((element) {
+      ReviewCartModel reviewCartModel = ReviewCartModel(
+          cartId: element.get("cartId"),
+          cartName: element.get("cartName"),
+          cartImage: element.get("cartImage"),
+          cartPrice: element.get("cartPrice"),
+          cartQuantity: element.get("cartQuantity"),
+      );
+      newList.add(reviewCartModel);
     });
+    reviewCartDataList = newList;
+    notifyListeners();
+  }
+
+  get getReviewCartDataList{
+    return reviewCartDataList;
   }
 }
+
