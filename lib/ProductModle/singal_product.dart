@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:test_project/ProductModle/ProductOverview.dart';
 import 'package:test_project/constants/color.dart';
+import 'package:test_project/widgets/count.dart';
 
 class SingalProduct extends StatelessWidget {
   final String productImage;
@@ -89,16 +92,11 @@ class SingalProduct extends StatelessWidget {
                                 ),
                                 child: Row(
                                   children: [
-// Quantity
-
                                     Expanded(
                                         child: Text(
                                       'หมู',
                                       style: TextStyle(fontSize: 10),
                                     )),
-
-// Arrow
-
                                     Center(
                                       child: Icon(
                                         Icons.arrow_drop_down,
@@ -110,44 +108,10 @@ class SingalProduct extends StatelessWidget {
                                 ),
                               ),
                             ),
-
-//This Is Second Rectangular Container
-
                             SizedBox(
                               width: 5,
                             ),
-
-                            Container(
-                              height: 25,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Icon(
-                                    Icons.remove,
-                                    size: 15,
-                                    color: memberColor,
-                                  ),
-                                  Text(
-                                    "1",
-                                    style: TextStyle(
-                                        color: Colors.brown,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Icon(
-                                    Icons.add,
-                                    size: 15,
-                                  ),
-                                ],
-                              ),
-                            ),
+                            Count(),
                           ],
                         ),
                       ],
