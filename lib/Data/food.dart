@@ -14,25 +14,3 @@ class DataFood {
   }
 }
 
-class ProductModle {
-  String? name;
-  String? image;
-  int? price;
-
-  ProductModle({required this.name, required this.image, required this.price});
-}
-
-class CartModle {
-  String cartId;
-  String cartImage;
-  String cartname;
-  int cartPrice;
-  int cartQuantity;
-
-  CartModle(
-      {required this.cartId,
-      required this.cartImage,
-      required this.cartname,
-      required this.cartPrice,
-      required this.cartQuantity});
-}

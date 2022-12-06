@@ -6,16 +6,17 @@ import 'package:test_project/constants/color.dart';
 import 'package:test_project/widgets/count.dart';
 
 class SingalProduct extends StatelessWidget {
-  final String productImage;
-  final String productName;
-  final int productPrice;
-  final Function onTap;
-
+  String productImage;
+  String productName;
+  int productPrice;
+  Function onTap;
+  String productId;
   SingalProduct({
     required this.productImage,
     required this.productName,
     required this.productPrice,
     required this.onTap,
+    required this.productId,
   });
 
   @override
@@ -111,7 +112,12 @@ class SingalProduct extends StatelessWidget {
                             SizedBox(
                               width: 5,
                             ),
-                            Count(),
+                            Count(
+                              cartId: productId,
+                              cartName: productName,
+                              cartImage: productImage,
+                              cartPrice: productPrice,
+                            ),
                           ],
                         ),
                       ],

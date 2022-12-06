@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_project/providers/product_provider.dart';
+import 'package:test_project/providers/reviewcart_provider.dart';
 import 'package:test_project/providers/user_provider.dart';
 import 'package:test_project/welcome_pange.dart';
 
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider<User_provider>(
             create: (context) =>User_provider(),
+          ),
+          ChangeNotifierProvider<ReviewCartProvider>(
+            create: (context) =>ReviewCartProvider(),
           ),
         ],
         child: MaterialApp(

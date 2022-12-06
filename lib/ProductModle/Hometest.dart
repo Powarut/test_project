@@ -52,6 +52,7 @@ class _HometestState extends State<Hometest> {
                   productImage: OneProductData.productImage,
                   productName: OneProductData.productName,
                   productPrice: OneProductData.productPrice,
+                  productId: '',
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -98,6 +99,7 @@ class _HometestState extends State<Hometest> {
                     ('https://cdn.britannica.com/17/196817-050-6A15DAC3/vegetables.jpg'),
                 productName: 'Herbs',
                 productPrice: 30,
+                productId: '',
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
@@ -116,6 +118,7 @@ class _HometestState extends State<Hometest> {
                       ('https://cdn.britannica.com/17/196817-050-6A15DAC3/vegetables.jpg'),
                   productName: 'Herbs',
                   productPrice: 30,
+                  productId: 'sdasd',
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -172,6 +175,7 @@ class _HometestState extends State<Hometest> {
                   productImage: DrinkProductData.productImage,
                   productName: DrinkProductData.productName,
                   productPrice: DrinkProductData.productPrice,
+                  productId: '',
                 );
               },
             ).toList(),

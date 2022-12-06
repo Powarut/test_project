@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:test_project/welcome_pange.dart';
 import 'package:test_project/Member/Edit%20Member.dart';
 import 'package:test_project/Member/QR%20Code.dart';
-import 'package:test_project/Model/cart_modle.dart';
 
 
 class HomeMember extends StatefulWidget {
@@ -154,27 +153,5 @@ class _HomeMemberState extends State<HomeMember> {
         ),
       ),
     );
-  }
-/////// add to cart//////
-  List<CartModIe> cartList=[];
-  List<CartModIe> newCartList=[];
-  late CartModIe cartModIe;
-  void addtoCart({
-    required String image,
-    required String name,
-    required int price,
-    required int quantity,
-  }){
-    cartModIe = CartModIe(
-        image: image,
-        name: name,
-        price: price,
-        quantity: quantity,
-    );
-    newCartList.add(cartModIe);
-    cartList=newCartList;
-  }
-  get throwCartList{
-    return cartList;
   }
 }

@@ -1,10 +1,10 @@
 class ReviewCartModel {
-  String? cartID;
-  String? cartImage;
-  int? productPrice;
-  int? cartQuantity;
+  String cartId;
+  String cartImage;
+  int productPrice;
+  int cartQuantity;
   ReviewCartModel({
-    required this.cartID,
+    required this.cartId,
     required this.cartImage,
     required this.productPrice,
     required this.cartQuantity,
