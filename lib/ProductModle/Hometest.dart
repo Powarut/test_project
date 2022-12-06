@@ -52,7 +52,7 @@ class _HometestState extends State<Hometest> {
                   productImage: OneProductData.productImage,
                   productName: OneProductData.productName,
                   productPrice: OneProductData.productPrice,
-                  productId: '',
+                  productId: OneProductData.productId,
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -175,7 +175,7 @@ class _HometestState extends State<Hometest> {
                   productImage: DrinkProductData.productImage,
                   productName: DrinkProductData.productName,
                   productPrice: DrinkProductData.productPrice,
-                  productId: '',
+                  productId: DrinkProductData.productId,
                 );
               },
             ).toList(),
