@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:test_project/Cart/review_cart.dart';
 import 'package:test_project/Member/Edit%20Member.dart';
 import 'package:test_project/Member/QR%20Code.dart';
+import 'package:test_project/constants/color.dart';
 import 'package:test_project/welcome_pange.dart';
 
 class DrawerSide extends StatelessWidget {
@@ -30,6 +31,7 @@ class DrawerSide extends StatelessWidget {
             ),
             SizedBox(height: 20,),
             ListTile(
+              trailing: Icon(Icons.shopping_cart,color: textColor),
               title: const Text('รถเข็น',
                   style: TextStyle(fontSize: 16)),
               onTap: () {
@@ -39,7 +41,8 @@ class DrawerSide extends StatelessWidget {
               },
             ),
             ListTile(
-              title: const Text('ดูออเดอร์อาหารที่สั่ง',
+              trailing: Icon(Icons.list_alt_outlined,color: textColor),
+              title:  Text('ดูออเดอร์อาหารที่สั่ง',
                   style: TextStyle(fontSize: 16)),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -50,7 +53,8 @@ class DrawerSide extends StatelessWidget {
             Container(
               height: 250,
               child: ListTile(
-                title: const Text('QR Code',
+                trailing: Icon(Icons.qr_code,color: textColor),
+                title:  Text('QR Code',
                     style: TextStyle(fontSize: 16)),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -64,7 +68,8 @@ class DrawerSide extends StatelessWidget {
               color: Colors.black87,
             ),
             ListTile(
-              title: const Text('จัดการข้อมูลสมาชิก',
+              trailing: Icon(Icons.manage_accounts_outlined,color: textColor),
+              title:  Text('จัดการข้อมูลสมาชิก',
                   style: TextStyle(fontSize: 16)),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -73,7 +78,8 @@ class DrawerSide extends StatelessWidget {
               },
             ),
             ListTile(
-              title: const Text('ลงชื่อออก', style: TextStyle(fontSize: 16)),
+              trailing: Icon(Icons.logout,color: textColor),
+              title:  Text('ลงชื่อออก', style: TextStyle(fontSize: 16)),
               onTap: () {
                 profile.signOut().then((value) {
                   Navigator.pushReplacement(context,

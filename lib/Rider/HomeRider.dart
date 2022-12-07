@@ -83,6 +83,7 @@ class _HomeRiderState extends State<HomeRider>
               ),
             ),
             ListTile(
+              trailing: Icon(Icons.qr_code_scanner_outlined),
               title: const Text('Scan QR Code'),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -91,6 +92,7 @@ class _HomeRiderState extends State<HomeRider>
               },
             ),
             ListTile(
+              trailing: Icon(Icons.logout_outlined),
               title: const Text('ลงชื่อออก'),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {

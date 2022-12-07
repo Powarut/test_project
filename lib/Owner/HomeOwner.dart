@@ -87,6 +87,7 @@ class _HomeOwnerState extends State<HomeOwner>
             ),
             ListTile(
               title: const Text('จัดการเมนูอาหาร'),
+              trailing: Icon(Icons.food_bank_outlined),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return manage_menu();
@@ -96,6 +97,7 @@ class _HomeOwnerState extends State<HomeOwner>
 
             ListTile(
               title: const Text('ลงชื่อออก'),
+              trailing: Icon(Icons.logout_outlined),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return Homescreen();
