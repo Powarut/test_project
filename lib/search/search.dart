@@ -73,6 +73,7 @@ class _SearchState extends State<Search> {
                 productPrice: data.productPrice,
                 productId: '',
                 productQuantity: 1,
+                onDelete: (){},
               );
             }).toList(),
           )

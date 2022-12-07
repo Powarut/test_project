@@ -8,6 +8,7 @@ class SingleItem extends StatefulWidget {
   int productPrice;
   String productId;
   int productQuantity;
+  Function  onDelete;
   SingleItem({
     required this.isBool,
     required this.productImage,
@@ -15,6 +16,7 @@ class SingleItem extends StatefulWidget {
     required this.productPrice,
     required this.productId,
     required this.productQuantity,
+    required this.onDelete,
   });
 
   @override
@@ -22,6 +24,8 @@ class SingleItem extends StatefulWidget {
 }
 
 class _SingleItemState extends State<SingleItem> {
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -100,10 +104,13 @@ class _SingleItemState extends State<SingleItem> {
                         )
                       : Column(
                           children: [
-                            Icon(
-                              Icons.delete,
-                              size: 30,
-                              color: Colors.black54,
+                            InkWell(
+                              onTap: (){},
+                              child: Icon(
+                                Icons.delete,
+                                size: 30,
+                                color: Colors.black54,
+                              ),
                             ),
                             SizedBox(
                               height: 5,

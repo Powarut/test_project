@@ -16,31 +16,33 @@ class ReviewCartProvider with ChangeNotifier {
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection("Cart")
         .doc(cartId)
-        .set({
-      "CartId": cartId,
-      "CartName": cartName,
-      "CartImage": cartImage,
-      "CartPrice": cartPrice,
-      "CartTotal": cartQuantity,
-    },
+        .set(
+      {
+        "CartId": cartId,
+        "CartName": cartName,
+        "CartImage": cartImage,
+        "CartPrice": cartPrice,
+        "CartTotal": cartQuantity,
+      },
     );
   }
+
   List<ReviewCartModel> reviewCartDataList = [];
   void getReviewCartData() async {
     List<ReviewCartModel> newList = [];
 
     QuerySnapshot reviewCartValue = await FirebaseFirestore.instance
-        .collection("Food")
+        .collection("Member")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection("Cart")
         .get();
     reviewCartValue.docs.forEach((element) {
       ReviewCartModel reviewCartModel = ReviewCartModel(
-          cartId: element.get("cartId"),
-          cartName: element.get("cartName"),
-          cartImage: element.get("cartImage"),
-          cartPrice: element.get("cartPrice"),
-          cartQuantity: element.get("cartQuantity"),
+        cartId: element.get("cartId"),
+        cartName: element.get("cartName"),
+        cartImage: element.get("cartImage"),
+        cartPrice: element.get("cartPrice"),
+        cartQuantity: element.get("cartQuantity"),
       );
       newList.add(reviewCartModel);
     });
@@ -48,8 +50,18 @@ class ReviewCartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  get getReviewCartDataList{
+  get getReviewCartDataList {
     return reviewCartDataList;
   }
-}
 
+  ////////////////////////ส่วนลบรายการในรถเข็น//////////////////////////////
+  reviewCartDataDelete(cartId) {
+    FirebaseFirestore.instance
+        .collection("Member")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection("Cart")
+        .doc(cartId)
+        .delete();
+    notifyListeners();
+  }
+}

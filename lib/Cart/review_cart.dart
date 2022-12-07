@@ -6,7 +6,41 @@ import 'package:test_project/providers/reviewcart_provider.dart';
 import 'package:test_project/widgets/single_item.dart';
 
 class ReviewCart extends StatelessWidget {
-  const ReviewCart({Key? key}) : super(key: key);
+  late ReviewCartProvider reviewCartProvider;
+  showAlertDialog(BuildContext context, ReviewCartModel delete) {
+    // set up the buttons
+    Widget cancelButton = TextButton(
+      child: Text("ไม่"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = TextButton(
+      child: Text("ใช่"),
+      onPressed: () {
+        reviewCartProvider.reviewCartDataDelete(delete.cartId);
+        Navigator.of(context).pop();
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("รถเข็น"),
+      content: Text("คุณต้องการลบเมนูนี้ออกจากรถเข็นหรือไม่?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,28 +76,34 @@ class ReviewCart extends StatelessWidget {
           style: TextStyle(color: textColor, fontSize: 18),
         ),
       ),
-      body: reviewCartProvider.getReviewCartDataList.isEmpty?Center(
-        child: Text("ไม่มีข้อมูล"),
-      ):ListView.builder(
-          itemCount: reviewCartProvider.getReviewCartDataList.length,
-          itemBuilder: (context, index) {
-            ReviewCartModel data = reviewCartProvider.getReviewCartDataList[index];
-        return Column(
-          children: [
-            SizedBox(
-              height: 10,
-            ),
-            SingleItem(
-              isBool: true,
-              productImage: data.cartImage,
-              productName: data.cartName,
-              productPrice: data.cartPrice,
-              productId: data.cartId,
-              productQuantity: data.cartQuantity,
-            ),
-          ],
-        );
-      }),
+      body: reviewCartProvider.getReviewCartDataList.isEmpty
+          ? Center(
+              child: Text("ไม่มีข้อมูล"),
+            )
+          : ListView.builder(
+              itemCount: reviewCartProvider.getReviewCartDataList.length,
+              itemBuilder: (context, index) {
+                ReviewCartModel data =
+                    reviewCartProvider.getReviewCartDataList[index];
+                return Column(
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SingleItem(
+                      isBool: true,
+                      productImage: "",
+                      productName: 'dasda',
+                      productPrice: data.cartPrice,
+                      productId: data.cartId,
+                      productQuantity: data.cartQuantity,
+                      onDelete: () {
+                        showAlertDialog(context, data);
+                      },
+                    ),
+                  ],
+                );
+              }),
     );
   }
 }
