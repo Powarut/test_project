@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:test_project/Member/MemberLogin.dart';
+import 'package:test_project/constants/color.dart';
 
 class EditMember extends StatefulWidget {
   @override
@@ -38,7 +39,7 @@ class _EditMemberState extends State<EditMember> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: memberColor,
         elevation: 0,
         title: Text(
           'จัดการข้อมูลสมาชิก',
@@ -75,7 +76,7 @@ class _EditMemberState extends State<EditMember> {
                   controller: newPasswordController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please entr Password';
+                      return 'โปรดใส่รหัสผ่าน';
                     }
                     return null;
                   },
@@ -87,8 +88,8 @@ class _EditMemberState extends State<EditMember> {
                   autofocus: false,
                   obscureText: true,
                   decoration: InputDecoration(
-                    labelText: 'New Phone Number',
-                    hintText: 'Plase Phone Number',
+                    labelText: 'ยืนยันรหัสผ่านใหม่อีกครั้ง',
+                    hintText: 'กรุณาป้อนรหัสผ่านใหม่',
                     labelStyle: TextStyle(fontSize: 20.0),
                     border: OutlineInputBorder(),
                     errorStyle:
@@ -97,13 +98,16 @@ class _EditMemberState extends State<EditMember> {
                   controller: newPasswordController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please entr Password';
+                      return 'โปรดใส่รหัสผ่าน';
                     }
                     return null;
                   },
                 ),
               ),
               ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(memberColor),
+                ),
                 onPressed: () {
                   if(_formKey.currentState!.validate()){
                     setState(() {

@@ -29,7 +29,7 @@ class _HomeRiderState extends State<HomeRider>
         backgroundColor: Colors.greenAccent,
         elevation: 0,
         title: Text(
-          'ชื่อพนักงานส่ง',
+          'Home',
           style: TextStyle(color: Colors.white),
         ),
       ),

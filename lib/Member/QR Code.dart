@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/Model/qr_create.dart';
+import 'package:test_project/constants/color.dart';
 
 class QRCode extends StatefulWidget {
   @override
@@ -12,6 +13,7 @@ class _QRCodeState extends State<QRCode> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: memberColor,
         centerTitle: true,
         title: Text(
           'ยืนยันการรับอาหาร',
