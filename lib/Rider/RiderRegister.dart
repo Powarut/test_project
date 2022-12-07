@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:test_project/Data/DataRider.dart';
+import 'package:test_project/constants/color.dart';
 
 class RiderRegister extends StatefulWidget {
   @override
@@ -45,6 +46,7 @@ class _RiderRegisterState extends State<RiderRegister> {
           if (snapshot.connectionState == ConnectionState.done) {
             return Scaffold(
               appBar: AppBar(
+                backgroundColor: riderColor,
                 title: Text("สร้างบัญชีผู้ใช้ของพนักงานส่ง"),
               ),
               body: Padding(
@@ -117,6 +119,9 @@ class _RiderRegisterState extends State<RiderRegister> {
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all<Color>(riderColor),
+                              ),
                               child: Text(
                                 "ลงทะเบียน",
                                 style: TextStyle(fontSize: 20),

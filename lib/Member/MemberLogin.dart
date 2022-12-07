@@ -6,6 +6,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:test_project/Data/DataMember.dart';
 import 'package:test_project/Member/HomeMember.dart';
 import 'package:test_project/Member/MemberRegister.dart';
+import 'package:test_project/constants/color.dart';
 
 class MemberLogin extends StatefulWidget {
   @override
@@ -36,7 +37,8 @@ class _MemberLoginState extends State<MemberLogin> {
           if (snapshot.connectionState == ConnectionState.done) {
             return Scaffold(
               appBar: AppBar(
-                title: Text("เข้าสู่ระบบ ลูกค้า"),
+                backgroundColor: memberColor,
+                title: Text("เข้าสู่ระบบในฐานะลูกค้า"),
               ),
               body: Padding(
                 padding: const EdgeInsets.all(30.0),
@@ -75,6 +77,9 @@ class _MemberLoginState extends State<MemberLogin> {
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton.icon(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all<Color>(memberColor),
+                              ),
                               icon: Icon(Icons.login),
                               label: Text(
                                 "เข้าสู่ระบบ",
@@ -107,7 +112,10 @@ class _MemberLoginState extends State<MemberLogin> {
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton.icon(
-                              icon: Icon(Icons.add),
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all<Color>(memberColor),
+                              ),
+                              icon: Icon(Icons.card_membership_outlined),
                               label: Text("สร้างบัญชีผู้ใช้",
                                   style: TextStyle(fontSize: 20)),
                               onPressed: () {

@@ -84,13 +84,14 @@ class _CountState extends State<Count> {
                   setState(() {
                     isTrue = true;
                   });
-                 reviewCartProvider.addReviewCartData(
-                     cartId: widget.cartId,
-                     cartName: widget.cartName,
-                     cartImage: widget.cartImage,
-                     cartPrice: widget.cartPrice,
-                     cartQuantity: count,
-                 );
+                  reviewCartProvider.addReviewCartData(
+                    cartId: widget.cartId,
+                    cartName: widget.cartName,
+                    cartImage: widget.cartImage,
+                    cartPrice: widget.cartPrice,
+                    cartQuantity: count,
+                    isAdd: true,
+                  );
                 },
                 child: Text(
                   "ADD",

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_project/constants/color.dart';
 import 'package:test_project/welcome_pange.dart';
 import 'package:test_project/Order/order_delivery.dart';
 import 'package:test_project/Order/order_finish.dart';
@@ -26,10 +27,10 @@ class _HomeOwnerState extends State<HomeOwner>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: ownerColor,
         elevation: 0,
         title: Text(
-          'ชื่อร้านอาหาร',
+          'Home',
           style: TextStyle(color: Colors.white),
         ),
       ),

@@ -92,8 +92,8 @@ class ReviewCart extends StatelessWidget {
                     ),
                     SingleItem(
                       isBool: true,
-                      productImage: "",
-                      productName: 'dasda',
+                      productImage: data.cartImage,
+                      productName: data.cartName,
                       productPrice: data.cartPrice,
                       productId: data.cartId,
                       productQuantity: data.cartQuantity,

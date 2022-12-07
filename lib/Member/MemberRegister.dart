@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:test_project/Data/DataMember.dart';
+import 'package:test_project/constants/color.dart';
 
 
 class MemberRegister extends StatefulWidget {
@@ -45,6 +46,7 @@ class _MemberRegisterState extends State<MemberRegister> {
           if (snapshot.connectionState == ConnectionState.done) {
             return Scaffold(
               appBar: AppBar(
+                backgroundColor: memberColor,
                 title: Text("สร้างบัญชีผู้ใช้ของลูกค้า"),
               ),
               body: Padding(

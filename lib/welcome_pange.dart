@@ -3,6 +3,7 @@ import 'package:test_project/Member/MemberLogin.dart';
 import 'package:test_project/Owner/OwnerLogin.dart';
 import 'package:test_project/ProductModle/Hometest.dart';
 import 'package:test_project/Rider/RiderLogin.dart';
+import 'package:test_project/constants/color.dart';
 
 class Homescreen extends StatelessWidget {
   @override
@@ -47,7 +48,10 @@ class Homescreen extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton.icon(
-                    icon: Icon(Icons.card_membership),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(memberColor),
+                    ),
+                    icon: Icon(Icons.people_alt_outlined),
                     label: Text("ลูกค้า", style: TextStyle(fontSize: 20)),
                     onPressed: () {
                       Navigator.push(context,
@@ -60,6 +64,9 @@ class Homescreen extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton.icon(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(riderColor),
+                    ),
                     icon: Icon(Icons.delivery_dining),
                     label: Text("พนักงานส่ง", style: TextStyle(fontSize: 20)),
                     onPressed: () {
@@ -73,7 +80,10 @@ class Homescreen extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton.icon(
-                    icon: Icon(Icons.shop),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(ownerColor),
+                    ),
+                    icon: Icon(Icons.restaurant),
                     label: Text("เจ้าของร้าน", style: TextStyle(fontSize: 20)),
                     onPressed: () {
                       Navigator.push(context,

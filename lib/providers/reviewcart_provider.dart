@@ -10,6 +10,7 @@ class ReviewCartProvider with ChangeNotifier {
     String? cartImage,
     int? cartPrice,
     int? cartQuantity,
+    bool? isAdd,
   }) async {
     await FirebaseFirestore.instance
         .collection("Member")
@@ -23,6 +24,7 @@ class ReviewCartProvider with ChangeNotifier {
         "CartImage": cartImage,
         "CartPrice": cartPrice,
         "CartTotal": cartQuantity,
+        "isAdd": isAdd,
       },
     );
   }
@@ -50,7 +52,7 @@ class ReviewCartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  get getReviewCartDataList {
+  List<ReviewCartModel> get getReviewCartDataList {
     return reviewCartDataList;
   }
 

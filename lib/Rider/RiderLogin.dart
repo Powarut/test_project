@@ -6,6 +6,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:test_project/Data/DataRider.dart';
 import 'package:test_project/Rider/HomeRider.dart';
 import 'package:test_project/Rider/RiderRegister.dart';
+import 'package:test_project/constants/color.dart';
 
 class RiderLogin extends StatefulWidget {
   @override
@@ -36,7 +37,8 @@ class _RiderLoginState extends State<RiderLogin> {
           if (snapshot.connectionState == ConnectionState.done) {
             return Scaffold(
               appBar: AppBar(
-                title: Text("เข้าสู่ระบบ พนักงานส่ง"),
+                backgroundColor: riderColor,
+                title: Text("เข้าสู่ระบบในฐานะพนักงานส่ง"),
               ),
               body: Padding(
                 padding: const EdgeInsets.all(30.0),
@@ -75,6 +77,9 @@ class _RiderLoginState extends State<RiderLogin> {
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton.icon(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all<Color>(riderColor),
+                              ),
                               icon: Icon(Icons.login),
                               label: Text(
                                 "เข้าสู่ระบบ",
@@ -107,7 +112,10 @@ class _RiderLoginState extends State<RiderLogin> {
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton.icon(
-                              icon: Icon(Icons.add),
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all<Color>(riderColor),
+                              ),
+                              icon: Icon(Icons.card_membership),
                               label: Text("สร้างบัญชีผู้ใช้",
                                   style: TextStyle(fontSize: 20)),
                               onPressed: () {

@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:test_project/Data/DataOwner.dart';
 import 'package:test_project/Owner/HomeOwner.dart';
+import 'package:test_project/constants/color.dart';
 
 class OwnerLogin extends StatefulWidget {
   @override
@@ -35,7 +36,8 @@ class _OwnerLoginState extends State<OwnerLogin> {
           if (snapshot.connectionState == ConnectionState.done) {
             return Scaffold(
               appBar: AppBar(
-                title: Text("เข้าสู่ระบบ เจ้าของร้าน"),
+                backgroundColor: ownerColor,
+                title: Text("เข้าสู่ระบบในฐานะเจ้าของร้าน"),
               ),
               body: Padding(
                 padding: const EdgeInsets.all(30.0),
@@ -74,6 +76,9 @@ class _OwnerLoginState extends State<OwnerLogin> {
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton.icon(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all<Color>(ownerColor),
+                              ),
                               icon: Icon(Icons.login),
                               label: Text(
                                 "เข้าสู่ระบบ",
