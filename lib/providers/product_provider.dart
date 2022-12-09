@@ -5,13 +5,15 @@ import 'package:test_project/Model/product_modle.dart';
 class ProductProvider with ChangeNotifier {
   late ProductModel productModel;
 
-  List<ProductModel>search=[];
-  productModels(QueryDocumentSnapshot element){
+  List<ProductModel> search = [];
+  productModels(QueryDocumentSnapshot element) {
+
     productModel = ProductModel(
-      productImage: element.get("FoodImage"),
-      productName: element.get("FoodName"), 
-      productPrice: element.get("FoodPrice"),
-      productId: element.get("FoodId"),
+      productImage: element.get("productImage"),
+      productName: element.get("productName"),
+      productPrice: element.get("productPrice"),
+      productId: element.get("productId"),
+
     );
     search.add(productModel);
   }
@@ -24,7 +26,7 @@ class ProductProvider with ChangeNotifier {
     List<ProductModel> newList = [];
 
     QuerySnapshot value =
-        await FirebaseFirestore.instance.collection("Food").get();
+        await FirebaseFirestore.instance.collection('Food').get();
 
     value.docs.forEach(
       (element) {

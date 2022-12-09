@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:test_project/Data/food.dart';
+import 'package:test_project/Model/upload_Imadge.dart';
+import 'package:test_project/constants/color.dart';
 
 class Ow_create extends StatefulWidget {
 
@@ -38,6 +40,7 @@ class _Ow_createState extends State<Ow_create> {
           if (snapshot.connectionState == ConnectionState.done) {
             return Scaffold(
               appBar: AppBar(
+                backgroundColor: ownerColor,
                 title: Text('สร้างเมนูอาหาร'),
               ),
               body: Container(
@@ -148,13 +151,17 @@ class _Ow_createState extends State<Ow_create> {
       ),
     );
   }
-
   Padding PictureIcon() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Icon(
-        Icons.insert_photo,
-        size: 100,
+      child: IconButton(
+        icon: Icon(Icons.add_a_photo_outlined,size: 50,),
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) {
+                return uploadImage();
+              }));
+        },
       ),
     );
   }

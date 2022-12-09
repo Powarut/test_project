@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:test_project/Cart/cart_model.dart';
+import 'package:test_project/cart/cart_model.dart';
 
 class ReviewCartProvider with ChangeNotifier {
   void addReviewCartData({
@@ -10,7 +10,6 @@ class ReviewCartProvider with ChangeNotifier {
     String? cartImage,
     int? cartPrice,
     int? cartQuantity,
-    bool? isAdd,
   }) async {
     await FirebaseFirestore.instance
         .collection("Member")
@@ -23,8 +22,32 @@ class ReviewCartProvider with ChangeNotifier {
         "CartName": cartName,
         "CartImage": cartImage,
         "CartPrice": cartPrice,
-        "CartTotal": cartQuantity,
-        "isAdd": isAdd,
+        "cartQuantity": cartQuantity,
+        "isAdd": true,
+      },
+    );
+  }
+
+  void updateReviewCartData({
+    String? cartId,
+    String? cartName,
+    String? cartImage,
+    int? cartPrice,
+    int? cartQuantity,
+  }) async {
+    FirebaseFirestore.instance
+        .collection("ReviewCart")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection("YourReviewCart")
+        .doc(cartId)
+        .update(
+      {
+        "cartId": cartId,
+        "cartName": cartName,
+        "cartImage": cartImage,
+        "cartPrice": cartPrice,
+        "cartQuantity": cartQuantity,
+        "isAdd": true,
       },
     );
   }
@@ -54,6 +77,16 @@ class ReviewCartProvider with ChangeNotifier {
 
   List<ReviewCartModel> get getReviewCartDataList {
     return reviewCartDataList;
+  }
+
+  //// TotalPrice  ///
+
+  getTotalPrice() {
+    double total = 0.0;
+    reviewCartDataList.forEach((element) {
+      total += element.cartPrice * element.cartQuantity;
+    });
+    return total;
   }
 
   ////////////////////////ส่วนลบรายการในรถเข็น//////////////////////////////

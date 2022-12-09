@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:test_project/Cart/review_cart.dart';
+import 'package:test_project/cart/review_cart.dart';
 import 'package:test_project/Member/Edit%20Member.dart';
 import 'package:test_project/Member/QR%20Code.dart';
 import 'package:test_project/constants/color.dart';
@@ -51,7 +51,7 @@ class DrawerSide extends StatelessWidget {
               },
             ),
             Container(
-              height: 250,
+              height: 220,
               child: ListTile(
                 trailing: Icon(Icons.qr_code,color: textColor),
                 title:  Text('QR Code',

@@ -16,7 +16,7 @@ class _SearchState extends State<Search> {
 
   searchItem(String query) {
     List<ProductModel> searchFood = widget.search.where((element) {
-      return element.productName.toLowerCase().contains(query);
+      return element.productName!.toLowerCase().contains(query);
     }).toList();
     return searchFood;
   }
@@ -69,11 +69,12 @@ class _SearchState extends State<Search> {
               return SingleItem(
                 isBool: false,
                 productImage: data.productImage,
-                productName: data.productName,
+                productName: data.productName!,
                 productPrice: data.productPrice,
                 productId: '',
                 productQuantity: 1,
                 onDelete: (){},
+                productUnit: data.productPrice,
               );
             }).toList(),
           )

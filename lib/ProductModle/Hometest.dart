@@ -26,13 +26,13 @@ class _HometestState extends State<Hometest> {
             children: [
               Text('อาหารตามสั่ง'),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) => Search(
-                            search: productProvider.getOneProductDataList,
-                          ),
+                    MaterialPageRoute(
+                      builder: (context) => Search(
+                        search: productProvider.getOneProductDataList,
                       ),
+                    ),
                   );
                 },
                 child: Text(
@@ -96,7 +96,7 @@ class _HometestState extends State<Hometest> {
             children: [
               SingalProduct(
                 productImage:
-                    ('https://cdn.britannica.com/17/196817-050-6A15DAC3/vegetables.jpg'),
+                    ('https://firebasestorage.googleapis.com/v0/b/project-3e0ab.appspot.com/o/%E0%B8%81%E0%B8%B0%E0%B9%80%E0%B8%9E%E0%B8%A3%E0%B8%B2.jpg?alt=media&token=dfaf4fc3-4032-41df-a858-a894f63d97ac'),
                 productName: 'Herbs',
                 productPrice: 30,
                 productId: '',
@@ -207,35 +207,26 @@ class _HometestState extends State<Hometest> {
           style: TextStyle(color: textColor, fontSize: 17),
         ),
         actions: [
-          CircleAvatar(
-            backgroundColor: memberColor,
-            radius: 12,
-            child: IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => Search(
-                      search: productProvider.search,
-                    ),
-                  ),
-                );
-              },
-              icon: Icon(
-                Icons.search,
-                size: 17,
-                color: textColor,
-              ),
-            ),
-          ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
+            padding: const EdgeInsets.all(8.0),
             child: CircleAvatar(
               backgroundColor: memberColor,
               radius: 12,
-              child: Icon(
-                Icons.shop,
-                size: 17,
-                color: textColor,
+              child: IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => Search(
+                        search: productProvider.search,
+                      ),
+                    ),
+                  );
+                },
+                icon: Icon(
+                  Icons.search,
+                  size: 17,
+                  color: textColor,
+                ),
               ),
             ),
           ),

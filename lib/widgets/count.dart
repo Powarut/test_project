@@ -1,19 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_project/constants/color.dart';
 import '../providers/reviewcart_provider.dart';
 
 class Count extends StatefulWidget {
-  final String cartId;
-  final String cartName;
-  final String cartImage;
-  final int cartPrice;
+  String productName;
+  String productImage;
+  String productId;
+  int productPrice;
+
 
   Count({
-    required this.cartId,
-    required this.cartName,
-    required this.cartImage,
-    required this.cartPrice,
+    required this.productName,
+
+    required this.productId,
+    required this.productImage,
+    required this.productPrice,
   });
 
   @override
@@ -24,8 +28,32 @@ class _CountState extends State<Count> {
   int count = 1;
   bool isTrue = false;
 
+  getAddAndQuantity() {
+    FirebaseFirestore.instance
+        .collection("ReviewCart")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection("YourReviewCart")
+        .doc(widget.productId)
+        .get()
+        .then(
+          (value) => {
+        if (this.mounted)
+          {
+            if (value.exists)
+              {
+                setState(() {
+                  count = value.get("cartQuantity");
+                  isTrue = value.get("isAdd");
+                })
+              }
+          }
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext Countext) {
+    getAddAndQuantity();
     ReviewCartProvider reviewCartProvider = Provider.of(context);
     return Container(
       height: 25,
@@ -51,6 +79,7 @@ class _CountState extends State<Count> {
                       setState(() {
                         isTrue = false;
                       });
+                      reviewCartProvider.reviewCartDataDelete(widget.productId);
                     }
                   },
                   child: Icon(
@@ -69,6 +98,13 @@ class _CountState extends State<Count> {
                     setState(() {
                       count++;
                     });
+                    reviewCartProvider.updateReviewCartData(
+                      cartId: widget.productId,
+                      cartImage: widget.productImage,
+                      cartName: widget.productName,
+                      cartPrice: widget.productPrice,
+                      cartQuantity: count,
+                    );
                   },
                   child: Icon(
                     Icons.add,
@@ -85,12 +121,11 @@ class _CountState extends State<Count> {
                     isTrue = true;
                   });
                   reviewCartProvider.addReviewCartData(
-                    cartId: widget.cartId,
-                    cartName: widget.cartName,
-                    cartImage: widget.cartImage,
-                    cartPrice: widget.cartPrice,
+                    cartId: widget.productId,
+                    cartImage: widget.productImage,
+                    cartName: widget.productName,
+                    cartPrice: widget.productPrice,
                     cartQuantity: count,
-                    isAdd: true,
                   );
                 },
                 child: Text(

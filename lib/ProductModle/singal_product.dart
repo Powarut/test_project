@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:test_project/ProductModle/ProductOverview.dart';
 import 'package:test_project/constants/color.dart';
@@ -61,66 +59,68 @@ class SingalProduct extends StatelessWidget {
                   flex: 2,
                   child: Padding(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          productName,
-                          style: TextStyle(
-                            color: textColor,
-                            fontWeight: FontWeight.bold,
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            productName,
+                            style: TextStyle(
+                              color: textColor,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        Text(
-                          '$productPrice',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                padding: EdgeInsets.only(left: 5),
-                                height: 25,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.grey,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                        child: Text(
-                                      'หมู',
-                                      style: TextStyle(fontSize: 10),
-                                    )),
-                                    Center(
-                                      child: Icon(
-                                        Icons.arrow_drop_down,
-                                        size: 19,
-                                        color: Colors.brown,
+                          Text(
+                            '$productPrice',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    padding: EdgeInsets.only(left: 5),
+                                    height: 25,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.grey,
                                       ),
+                                      borderRadius: BorderRadius.circular(8),
                                     ),
-                                  ],
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                            child: Text(
+                                              'หมู',
+                                              style: TextStyle(fontSize: 10),
+                                            )),
+                                        Center(
+                                          child: Icon(
+                                            Icons.arrow_drop_down,
+                                            size: 19,
+                                            color: Colors.brown,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                              ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Count(
+                                  productId: productId,
+                                  productName: productName,
+                                  productImage: productImage,
+                                  productPrice: productPrice,
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Count(
-                              cartId: productId,
-                              cartName: productName,
-                              cartImage: productImage,
-                              cartPrice: productPrice,
-                            ),
-                          ],
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),

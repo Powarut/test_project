@@ -1,7 +1,8 @@
-import 'package:badges/badges.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:test_project/ProductModle/DrawerSide.dart';
+import 'package:test_project/constants/color.dart';
 import 'package:test_project/welcome_pange.dart';
 import 'package:test_project/Member/Edit%20Member.dart';
 import 'package:test_project/Member/QR%20Code.dart';
@@ -21,29 +22,15 @@ class _HomeMemberState extends State<HomeMember> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        drawer: DrawerSide(),
         appBar: AppBar(
-          backgroundColor: Colors.blueAccent,
+          backgroundColor: memberColor,
           elevation: 0,
           title: Text(
-            'ชื่อลูกค้า',
+            "Home",
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child: Badge(
-                  badgeContent: Text(
-                    '0',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  animationDuration: Duration(milliseconds: 300),
-                  child: Icon(Icons.shopping_bag_outlined),
-                ),
-              ),
-            ),
-          ],
         ),
         body: StreamBuilder(
           stream: FirebaseFirestore.instance.collection("Food").snapshots(),
@@ -56,7 +43,7 @@ class _HomeMemberState extends State<HomeMember> {
             }
             return ListView(
               children: snapshot.data!.docs.map((document) {
-                return Padding(
+                return Container(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -85,7 +72,7 @@ class _HomeMemberState extends State<HomeMember> {
                           ),
                         ),
                         IconButton(
-                          onPressed: () => null,
+                          onPressed: () {},
                           icon: Icon(
                             Icons.add_circle,
                           ),
@@ -95,61 +82,6 @@ class _HomeMemberState extends State<HomeMember> {
               }).toList(),
             );
           },
-        ),
-        drawer: Drawer(
-          child: SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                UserAccountsDrawerHeader(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage('assets/images/logobrand2.png')),
-                  ),
-                  currentAccountPicture: CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/user.png"),
-                  ),
-                  accountName: Text("M M"),
-                  accountEmail: Text("member@hotmail.com"),
-                ),
-                ListTile(
-                  title: const Text('จัดการข้อมูลสมาชิก',
-                      style: TextStyle(fontSize: 16)),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return EditMember();
-                    }));
-                  },
-                ),
-                ListTile(
-                  title: const Text('ยืนยันการรับอาหาร',
-                      style: TextStyle(fontSize: 16)),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return QRCode();
-                    }));
-                  },
-                ),
-                Divider(
-                  thickness: 2,
-                  color: Colors.black87,
-                ),
-                ListTile(
-                  title: const Text('ลงชื่อออก', style: TextStyle(fontSize: 16)),
-                  onTap: () {
-                    profile.signOut().then((value) {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) {
-                        return Homescreen();
-                      }));
-                    });
-                  },
-                ),
-              ],
-            ),
-          ),
         ),
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:test_project/Cart/cart_model.dart';
+import 'package:test_project/cart/cart_model.dart';
 import 'package:test_project/constants/color.dart';
 import 'package:test_project/providers/reviewcart_provider.dart';
 import 'package:test_project/widgets/single_item.dart';
@@ -97,6 +97,7 @@ class ReviewCart extends StatelessWidget {
                       productPrice: data.cartPrice,
                       productId: data.cartId,
                       productQuantity: data.cartQuantity,
+                      productUnit: data.cartUnit,
                       onDelete: () {
                         showAlertDialog(context, data);
                       },
