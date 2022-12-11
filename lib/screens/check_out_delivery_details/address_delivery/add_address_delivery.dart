@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:test_project/constants/color.dart';
+import 'package:test_project/providers/check_out_provider.dart';
 import 'package:test_project/widgets/costom_text_field.dart';
 
 class AddDeliveryAddressState extends StatefulWidget {
@@ -17,9 +19,10 @@ enum AddressTypes {
 }
 
 class _AddDeliveryAddressStateState extends State<AddDeliveryAddressState> {
-  AddressTypes? _addressTypes;
+  var myType = AddressTypes.Home;
   @override
   Widget build(BuildContext context) {
+    CheckoutProvider checkoutProvider = Provider.of(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: memberColor,
@@ -31,8 +34,10 @@ class _AddDeliveryAddressStateState extends State<AddDeliveryAddressState> {
       bottomNavigationBar: Container(
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         height: 48,
-        child: MaterialButton(
-          onPressed: () {},
+        child: checkoutProvider.isloadding==false? MaterialButton(
+          onPressed: () {
+            checkoutProvider.vaildator(context,myType);
+          },
           child: Text(
             "เพิ่มที่อยู่",
             style: TextStyle(
@@ -45,6 +50,8 @@ class _AddDeliveryAddressStateState extends State<AddDeliveryAddressState> {
               30,
             ),
           ),
+        ):Center(
+          child: CircularProgressIndicator(),
         ),
       ),
       body: Padding(
@@ -55,27 +62,35 @@ class _AddDeliveryAddressStateState extends State<AddDeliveryAddressState> {
           children: [
             CostomTextField(
               labText: "ชื่อ",
+              controller: checkoutProvider.firstName,
             ),
             CostomTextField(
               labText: "นามสกุล",
+              controller: checkoutProvider.lastName,
             ),
             CostomTextField(
               labText: "เบอร์โทร",
+              controller: checkoutProvider.phone,
             ),
             CostomTextField(
               labText: "บ้านเลขที่",
+              controller: checkoutProvider.number,
             ),
             CostomTextField(
               labText: "ถนน/ซอย",
+              controller: checkoutProvider.street,
             ),
             CostomTextField(
               labText: "ตำบล/แขวง",
+              controller: checkoutProvider.landmark,
             ),
             CostomTextField(
-              labText: "อำเภอ",
+              labText: "อำเภอ/เมือง",
+              controller: checkoutProvider.city,
             ),
             CostomTextField(
               labText: "รหัสไปรษณีย์",
+              controller: checkoutProvider.pincode,
             ),
             InkWell(
               onTap: () {},
@@ -99,11 +114,11 @@ class _AddDeliveryAddressStateState extends State<AddDeliveryAddressState> {
             ),
             RadioListTile(
               value: AddressTypes.Home,
-              groupValue: _addressTypes,
+              groupValue: myType,
               title: Text("บ้าน"),
               onChanged: (value) {
                 setState(() {
-                  _addressTypes = value;
+                  myType = value!;
                 });
               },
               secondary: Icon(
@@ -113,11 +128,11 @@ class _AddDeliveryAddressStateState extends State<AddDeliveryAddressState> {
             ),
             RadioListTile(
               value: AddressTypes.Work,
-              groupValue: _addressTypes,
+              groupValue: myType,
               title: Text("ที่ทำงาน"),
               onChanged: (value) {
                 setState(() {
-                  _addressTypes = value;
+                  myType = value!;
                 });
               },
               secondary: Icon(
@@ -127,11 +142,11 @@ class _AddDeliveryAddressStateState extends State<AddDeliveryAddressState> {
             ),
             RadioListTile(
               value: AddressTypes.Other,
-              groupValue: _addressTypes,
+              groupValue: myType,
               title: Text("อื่นๆ"),
               onChanged: (value) {
                 setState(() {
-                  _addressTypes = value;
+                  myType = value!;
                 });
               },
               secondary: Icon(

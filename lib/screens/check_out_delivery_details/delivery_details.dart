@@ -6,12 +6,12 @@ import 'package:test_project/screens/check_out_delivery_details/single_delivery_
 
 class DeliveryDetails extends StatelessWidget {
   List<Widget> address = [
-    SingleDeliveryItem(
-      address: "56/3 อ.เมืองเอก ต.หลักหก จ.ปทุมธานี 22140",
-      title: "สมพงษ์ คำเหล่า",
-      number: "0988641234",
-      addressType: "Home",
-    ),
+    // SingleDeliveryItem(
+    //   address: "56/3 อ.เมืองเอก ต.หลักหก จ.ปทุมธานี 22140",
+    //   title: "สมพงษ์ คำเหล่า",
+    //   number: "0988641234",
+    //   addressType: "Home",
+    // ),
   ];
   @override
   Widget build(BuildContext context) {
