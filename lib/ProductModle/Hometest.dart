@@ -26,15 +26,7 @@ class _HometestState extends State<Hometest> {
             children: [
               Text('อาหารตามสั่ง'),
               GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => Search(
-                        search: productProvider.getOneProductDataList,
-                      ),
-                    ),
-                  );
-                },
+                onTap: () {},
                 child: Text(
                   'ดูทั้งหมด',
                   style: TextStyle(color: Colors.grey),
@@ -53,6 +45,7 @@ class _HometestState extends State<Hometest> {
                   productName: OneProductData.productName,
                   productPrice: OneProductData.productPrice,
                   productId: OneProductData.productId,
+                  productUnit: OneProductData,
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -93,45 +86,28 @@ class _HometestState extends State<Hometest> {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: [
-              SingalProduct(
-                productImage:
-                    ('https://firebasestorage.googleapis.com/v0/b/project-3e0ab.appspot.com/o/%E0%B8%81%E0%B8%B0%E0%B9%80%E0%B8%9E%E0%B8%A3%E0%B8%B2.jpg?alt=media&token=dfaf4fc3-4032-41df-a858-a894f63d97ac'),
-                productName: 'Herbs',
-                productPrice: 30,
-                productId: '',
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => ProductOverview(
-                        productName: 'Herbs',
-                        productImage:
-                            'https://cdn.britannica.com/17/196817-050-6A15DAC3/vegetables.jpg',
-                        productPrice: 30,
-                      ),
-                    ),
-                  );
-                },
-              ),
-              SingalProduct(
-                  productImage:
-                      ('https://cdn.britannica.com/17/196817-050-6A15DAC3/vegetables.jpg'),
-                  productName: 'Herbs',
-                  productPrice: 30,
-                  productId: 'sdasd',
+            children: productProvider.getTwoProductDataList.map(
+              (TwoProductData) {
+                return SingalProduct(
+                  productImage: TwoProductData.productImage,
+                  productName: TwoProductData.productName,
+                  productPrice: TwoProductData.productPrice,
+                  productId: TwoProductData.productId,
+                  productUnit: TwoProductData,
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => ProductOverview(
-                          productName: 'Herbs',
-                          productImage:
-                              'https://cdn.britannica.com/17/196817-050-6A15DAC3/vegetables.jpg',
-                          productPrice: 30,
+                          productName: TwoProductData.productName,
+                          productImage: TwoProductData.productImage,
+                          productPrice: TwoProductData.productPrice,
                         ),
                       ),
                     );
-                  }),
-            ],
+                  },
+                );
+              },
+            ).toList(),
           ),
         ),
       ],
@@ -176,6 +152,7 @@ class _HometestState extends State<Hometest> {
                   productName: DrinkProductData.productName,
                   productPrice: DrinkProductData.productPrice,
                   productId: DrinkProductData.productId,
+                  productUnit: DrinkProductData,
                 );
               },
             ).toList(),
@@ -214,13 +191,6 @@ class _HometestState extends State<Hometest> {
               radius: 12,
               child: IconButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => Search(
-                        search: productProvider.search,
-                      ),
-                    ),
-                  );
                 },
                 icon: Icon(
                   Icons.search,

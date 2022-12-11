@@ -4,9 +4,9 @@ import 'package:test_project/constants/color.dart';
 enum SinginCharacter { fill, outline }
 
 class ProductOverview extends StatefulWidget {
-   String productName;
-   String productImage;
-   int productPrice;
+   String? productName;
+   String? productImage;
+   int? productPrice;
   ProductOverview({
     required this.productName,
     required this.productImage,

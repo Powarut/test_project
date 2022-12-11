@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:test_project/constants/color.dart';
 import 'package:test_project/welcome_pange.dart';
 import 'package:test_project/Order/order_delivery.dart';
 import 'package:test_project/Order/order_finish.dart';
@@ -24,6 +26,8 @@ class _HomeRiderState extends State<HomeRider>
 
   @override
   Widget build(BuildContext context) {
+    final profile = FirebaseAuth.instance.currentUser!;
+    final
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.greenAccent,
@@ -70,37 +74,53 @@ class _HomeRiderState extends State<HomeRider>
         ],
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.greenAccent,
+        backgroundColor: Colors.white,
+        child: SafeArea(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              UserAccountsDrawerHeader(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcF9gjzHsADmFvKCSTTAr96wu20WP7rmu_AmmFycnQiqKXCW_rUgGnxyuHsWYfxnhhUK0&usqp=CAU")
+                  ),
+                ),
+                currentAccountPicture: CircleAvatar(
+                  backgroundImage: AssetImage("assets/images/user.png"),
+                ),
+                accountName: Text("M M"),
+                accountEmail: Text(profile.email!),
               ),
-              child: Text(
-                'ชื่อพนักงานส่ง',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
+              SizedBox(height: 20,),
+              ListTile(
+                trailing: Icon(Icons.qr_code_scanner_outlined,color: textColor),
+                title: const Text('Scan QR Code',
+                    style: TextStyle(fontSize: 16)),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return ScanQRCode();
+                  }));
+                },
               ),
-            ),
-            ListTile(
-              trailing: Icon(Icons.qr_code_scanner_outlined),
-              title: const Text('Scan QR Code'),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return ScanQRCode();
-                }));
-              },
-            ),
-            ListTile(
-              trailing: Icon(Icons.logout_outlined),
-              title: const Text('ลงชื่อออก'),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return Homescreen();
-                }));
-              },
-            ),
-          ],
+              Divider(
+                thickness: 2,
+                color: Colors.black87,
+              ),
+              ListTile(
+                trailing: Icon(Icons.logout,color: textColor),
+                title:  Text('ลงชื่อออก', style: TextStyle(fontSize: 16)),
+                onTap: () {
+                  FirebaseAuth.instance.signOut().then((value) {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) {
+                          return Homescreen();
+                        }));
+                  });
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

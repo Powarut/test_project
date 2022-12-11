@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_project/Model/product_modle.dart';
 import 'package:test_project/ProductModle/ProductOverview.dart';
 import 'package:test_project/constants/color.dart';
 import 'package:test_project/widgets/count.dart';
@@ -9,12 +10,14 @@ class SingalProduct extends StatelessWidget {
   int productPrice;
   Function onTap;
   String productId;
+  final ProductModel productUnit;
   SingalProduct({
     required this.productImage,
     required this.productName,
     required this.productPrice,
     required this.onTap,
     required this.productId,
+    required this.productUnit,
   });
 
   @override

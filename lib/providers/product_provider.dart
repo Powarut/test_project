@@ -9,11 +9,12 @@ class ProductProvider with ChangeNotifier {
   productModels(QueryDocumentSnapshot element) {
 
     productModel = ProductModel(
-      productImage: element.get("productImage"),
-      productName: element.get("productName"),
-      productPrice: element.get("productPrice"),
-      productId: element.get("productId"),
-
+      productImage: element.get("FoodImange"),
+      productName: element.get("FoodName"),
+      productPrice: element.get("FoodPrice"),
+      productId: element.get("FoodId"),
+      productQuantity: element.get("FoodQuantity"),
+      productUnit: element.get("FoodType")
     );
     search.add(productModel);
   }

@@ -7,7 +7,7 @@ import 'package:test_project/constants/color.dart';
 import 'package:test_project/welcome_pange.dart';
 
 class DrawerSide extends StatelessWidget {
-  final profile = FirebaseAuth.instance;
+  final profile = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -27,7 +27,7 @@ class DrawerSide extends StatelessWidget {
                 backgroundImage: AssetImage("assets/images/user.png"),
               ),
               accountName: Text("M M"),
-              accountEmail: Text("member@hotmail.com"),
+              accountEmail: Text(profile.email!),
             ),
             SizedBox(height: 20,),
             ListTile(
@@ -81,7 +81,7 @@ class DrawerSide extends StatelessWidget {
               trailing: Icon(Icons.logout,color: textColor),
               title:  Text('ลงชื่อออก', style: TextStyle(fontSize: 16)),
               onTap: () {
-                profile.signOut().then((value) {
+                FirebaseAuth.instance.signOut().then((value) {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) {
                         return Homescreen();

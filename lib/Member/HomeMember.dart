@@ -10,14 +10,11 @@ import 'package:test_project/Member/QR%20Code.dart';
 
 class HomeMember extends StatefulWidget {
 
-  final Stream<QuerySnapshot> Food =
-      FirebaseFirestore.instance.collection('Food').snapshots();
   @override
   State<HomeMember> createState() => _HomeMemberState();
 }
 
 class _HomeMemberState extends State<HomeMember> {
-  final profile = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -72,7 +69,9 @@ class _HomeMemberState extends State<HomeMember> {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+
+                          },
                           icon: Icon(
                             Icons.add_circle,
                           ),

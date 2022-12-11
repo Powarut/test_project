@@ -10,6 +10,7 @@ class ReviewCartProvider with ChangeNotifier {
     String? cartImage,
     int? cartPrice,
     int? cartQuantity,
+    var cartUnit,
   }) async {
     await FirebaseFirestore.instance
         .collection("Member")
@@ -23,6 +24,7 @@ class ReviewCartProvider with ChangeNotifier {
         "CartImage": cartImage,
         "CartPrice": cartPrice,
         "cartQuantity": cartQuantity,
+        "cartUnit": cartUnit,
         "isAdd": true,
       },
     );
@@ -36,9 +38,9 @@ class ReviewCartProvider with ChangeNotifier {
     int? cartQuantity,
   }) async {
     FirebaseFirestore.instance
-        .collection("ReviewCart")
+        .collection("Member")
         .doc(FirebaseAuth.instance.currentUser!.uid)
-        .collection("YourReviewCart")
+        .collection("Cart")
         .doc(cartId)
         .update(
       {

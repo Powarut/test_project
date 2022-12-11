@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:test_project/constants/color.dart';
 import 'package:test_project/welcome_pange.dart';
@@ -25,6 +26,7 @@ class _HomeOwnerState extends State<HomeOwner>
 
   @override
   Widget build(BuildContext context) {
+    final profile = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ownerColor,
@@ -73,38 +75,53 @@ class _HomeOwnerState extends State<HomeOwner>
         ],
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
+        backgroundColor: ownerColor,
+        child: SafeArea(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              UserAccountsDrawerHeader(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcF9gjzHsADmFvKCSTTAr96wu20WP7rmu_AmmFycnQiqKXCW_rUgGnxyuHsWYfxnhhUK0&usqp=CAU")
+                  ),
+                ),
+                currentAccountPicture: CircleAvatar(
+                  backgroundImage: AssetImage("assets/images/user.png"),
+                ),
+                accountName: Text("M M"),
+                accountEmail: Text(profile.email!),
               ),
-              child: Text(
-                'ชื่อเจ้าของร้าน',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+              SizedBox(height: 20,),
+              ListTile(
+                trailing: Icon(Icons.food_bank_outlined,color: textColor),
+                title: const Text('จัดการเมนูอาหาร',
+                    style: TextStyle(fontSize: 16)),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return manage_menu();
+                  }));
+                },
               ),
-            ),
-            ListTile(
-              title: const Text('จัดการเมนูอาหาร'),
-              trailing: Icon(Icons.food_bank_outlined),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return manage_menu();
-                }));
-              },
-            ),
-
-            ListTile(
-              title: const Text('ลงชื่อออก'),
-              trailing: Icon(Icons.logout_outlined),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return Homescreen();
-                }));
-              },
-            ),
-          ],
+              Divider(
+                thickness: 2,
+                color: Colors.black87,
+              ),
+              ListTile(
+                trailing: Icon(Icons.logout,color: textColor),
+                title:  Text('ลงชื่อออก', style: TextStyle(fontSize: 16)),
+                onTap: () {
+                  FirebaseAuth.instance.signOut().then((value) {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) {
+                          return Homescreen();
+                        }));
+                  });
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
