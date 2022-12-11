@@ -27,7 +27,6 @@ class _HomeRiderState extends State<HomeRider>
   @override
   Widget build(BuildContext context) {
     final profile = FirebaseAuth.instance.currentUser!;
-    final
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.greenAccent,
