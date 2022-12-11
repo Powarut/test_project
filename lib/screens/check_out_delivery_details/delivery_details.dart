@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/constants/color.dart';
 import 'package:test_project/screens/check_out_delivery_details/address_delivery/add_address_delivery.dart';
+import 'package:test_project/screens/check_out_delivery_details/payment_summary/payment_summary.dart';
 import 'package:test_project/screens/check_out_delivery_details/single_delivery_item.dart';
 
 class DeliveryDetails extends StatelessWidget {
+  List<Widget> address = [
+    SingleDeliveryItem(
+      address: "56/3 อ.เมืองเอก ต.หลักหก จ.ปทุมธานี 22140",
+      title: "สมพงษ์ คำเหล่า",
+      number: "0988641234",
+      addressType: "Home",
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,13 +30,21 @@ class DeliveryDetails extends StatelessWidget {
         // width :160,
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: MaterialButton(
-          child: Text("เพิ่มที่อยู่จัดส่งใหม่"),
+          child: address .isEmpty
+              ? Text("เพิ่มที่อยู่จัดส่งใหม่")
+              : Text("ชำระเงิน"),
           onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => AddDeliveryAddressState(),
-              ),
-            );
+            address.isEmpty
+                ? Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => AddDeliveryAddressState(),
+                    ),
+                  )
+                : Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => PaymentSummary(),
+                    ),
+                  );
           },
           color: memberColor,
           shape: RoundedRectangleBorder(
@@ -49,12 +66,14 @@ class DeliveryDetails extends StatelessWidget {
           ),
           Column(
             children: [
-              SingleDelivery(
-                address: "56/3 อ.เมืองเอก ต.หลักหก จ.ปทุมธานี 22140",
-                title: "สมพงษ์ คำเหล่า",
-                number: "0988641234",
-                addressType: "Home",
-              ),
+              address.isEmpty
+                  ? Container()
+                  : SingleDeliveryItem(
+                      address: "56/3 อ.เมืองเอก ต.หลักหก จ.ปทุมธานี 22140",
+                      title: "สมพงษ์ คำเหล่า",
+                      number: "0988641234",
+                      addressType: "Home",
+                    ),
             ],
           ),
         ],

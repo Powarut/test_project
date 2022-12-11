@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/constants/color.dart';
-class SingleDelivery extends StatelessWidget {
+class SingleDeliveryItem extends StatelessWidget {
   final String title;
   final String address;
   final String number;
   final String addressType;
-  SingleDelivery({
+  SingleDeliveryItem({
     required this.title,
     required this.address,
     required this.number,
