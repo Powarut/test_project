@@ -6,6 +6,7 @@ import 'package:test_project/Owner/manage_menu.dart';
 import 'package:test_project/ProductModle/Hometest.dart';
 import 'package:test_project/Rider/RiderLogin.dart';
 import 'package:test_project/constants/color.dart';
+import 'package:test_project/screens/check_out_delivery_details/delivery_details.dart';
 
 class Homescreen extends StatelessWidget {
   @override
@@ -103,7 +104,7 @@ class Homescreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return HomeMember();
+                        return DeliveryDetails();
                       }));
                     },
                   ),

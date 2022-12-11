@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:test_project/cart/cart_model.dart';
 import 'package:test_project/constants/color.dart';
 import 'package:test_project/providers/reviewcart_provider.dart';
+import 'package:test_project/screens/check_out_delivery_details/delivery_details.dart';
 import 'package:test_project/widgets/single_item.dart';
 
 class ReviewCart extends StatelessWidget {
@@ -65,7 +67,16 @@ class ReviewCart extends StatelessWidget {
                 30,
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              if(reviewCartProvider.getReviewCartDataList.isEmpty){
+                // return Fluttertoast.showToast(msg: "msg");
+              }
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => DeliveryDetails(),
+                ),
+              );
+            },
           ),
         ),
       ),
