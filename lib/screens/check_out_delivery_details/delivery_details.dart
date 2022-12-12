@@ -6,12 +6,12 @@ import 'package:test_project/screens/check_out_delivery_details/single_delivery_
 
 class DeliveryDetails extends StatelessWidget {
   List<Widget> address = [
-    // SingleDeliveryItem(
-    //   address: "56/3 อ.เมืองเอก ต.หลักหก จ.ปทุมธานี 22140",
-    //   title: "สมพงษ์ คำเหล่า",
-    //   number: "0988641234",
-    //   addressType: "Home",
-    // ),
+    SingleDeliveryItem(
+      address: "56/3 อ.เมืองเอก ต.หลักหก จ.ปทุมธานี 22140",
+      title: "สมพงษ์ คำเหล่า",
+      number: "0988641234",
+      addressType: "Home",
+    ),
   ];
   @override
   Widget build(BuildContext context) {
@@ -23,21 +23,27 @@ class DeliveryDetails extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: memberColor,
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => AddDeliveryAddress(),
+            ),
+          );
+        },
       ),
       bottomNavigationBar: Container(
         height: 48,
         // width :160,
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: MaterialButton(
-          child: address .isEmpty
+          child: address.isEmpty
               ? Text("เพิ่มที่อยู่จัดส่งใหม่")
               : Text("ชำระเงิน"),
           onPressed: () {
             address.isEmpty
                 ? Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => AddDeliveryAddressState(),
+                      builder: (context) => AddDeliveryAddress(),
                     ),
                   )
                 : Navigator.of(context).push(

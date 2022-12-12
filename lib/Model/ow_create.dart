@@ -169,7 +169,7 @@ class _Ow_createState extends State<Ow_create> {
     await Firebase.initializeApp();
     return await FirebaseFirestore.instance
         .collection("Food")
-        .doc("docID")
+        .doc()
         .get();
   }
 }

@@ -5,12 +5,11 @@ import 'package:test_project/providers/check_out_provider.dart';
 import 'package:test_project/screens/check_out_delivery_details/google_map/google_map.dart';
 import 'package:test_project/widgets/costom_text_field.dart';
 
-class AddDeliveryAddressState extends StatefulWidget {
-  const AddDeliveryAddressState({Key? key}) : super(key: key);
-
+class AddDeliveryAddress extends StatefulWidget {
+ 
   @override
-  State<AddDeliveryAddressState> createState() =>
-      _AddDeliveryAddressStateState();
+  State<AddDeliveryAddress> createState() =>
+      _AddDeliveryAddressState();
 }
 
 enum AddressTypes {
@@ -19,7 +18,7 @@ enum AddressTypes {
   Other,
 }
 
-class _AddDeliveryAddressStateState extends State<AddDeliveryAddressState> {
+class _AddDeliveryAddressState extends State<AddDeliveryAddress> {
   var myType = AddressTypes.Home;
   @override
   Widget build(BuildContext context) {
@@ -110,7 +109,9 @@ class _AddDeliveryAddressStateState extends State<AddDeliveryAddressState> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("ตั้งค่า Location"),
+                    checkoutProvider.setLocation == null
+                        ? Text("ตั้งค่า Location")
+                        : Text("เรียบร้อย!"),
                   ],
                 ),
               ),
