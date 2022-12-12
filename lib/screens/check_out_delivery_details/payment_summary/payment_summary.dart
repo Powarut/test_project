@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:test_project/Model/delivery_address_model.dart';
 import 'package:test_project/constants/color.dart';
+import 'package:test_project/providers/check_out_provider.dart';
+import 'package:test_project/providers/reviewcart_provider.dart';
 import 'package:test_project/screens/check_out_delivery_details/payment_summary/order_item.dart';
+import 'package:test_project/screens/check_out_delivery_details/single_delivery_item.dart';
 
 class PaymentSummary extends StatefulWidget {
-  const PaymentSummary({Key? key}) : super(key: key);
+  final DeliveryAddressModel deliveryAddressList;
+  PaymentSummary({required this.deliveryAddressList});
 
   @override
   State<PaymentSummary> createState() => _PaymentSummaryState();
@@ -18,6 +24,13 @@ class _PaymentSummaryState extends State<PaymentSummary> {
   PaymentTypes? _paymentTypes;
   @override
   Widget build(BuildContext context) {
+    ReviewCartProvider revierCartProvider = Provider.of(context);
+    revierCartProvider.getReviewCartData();
+
+    double discount;
+
+    double totalPrice = revierCartProvider.getTotalPrice();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: memberColor,
@@ -29,7 +42,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
       bottomNavigationBar: ListTile(
         title: Text("รวมยอดชำระ"),
         subtitle: Text(
-          "300 \rบาท",
+          "${totalPrice} \rบาท",
           style: TextStyle(
             color: Colors.green[900],
             fontWeight: FontWeight.bold,
@@ -56,109 +69,115 @@ class _PaymentSummaryState extends State<PaymentSummary> {
       body: Padding(
         padding: const EdgeInsets.only(top: 10),
         child: ListView.builder(
-          itemCount: 1,
-          itemBuilder: (context,index){
-            return Column(
-              children: [
-                ListTile(
-                  title: Text("สมพงษ์ คำเหล่า"),
-                  subtitle: Text("56/3 อ.เมืองเอก ต.หลักหก จ.ปทุมธานี 22140 \r0988641234"),
-                ),
-                Divider(),
-                ExpansionTile(
-                  children: [
-                    OrderItem(),
-                    OrderItem(),
-                    OrderItem(),
-                    OrderItem(),
-                    OrderItem(),
-                    OrderItem(),
-                    OrderItem(),
-                  ],
-                  title: Text("รายการอาหาร 7"),
-                ),
-                Divider(),
-                ListTile(
-                  minVerticalPadding: 5,
-                  leading: Text(
-                    "รวมทั้งหมด",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
+            itemCount: 1,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  SingleDeliveryItem(
+                    address: "${widget.deliveryAddressList.number},"
+                        "${widget.deliveryAddressList.street},"
+                        "${widget.deliveryAddressList.landmark},"
+                        "${widget.deliveryAddressList.city},"
+                        "${widget.deliveryAddressList.pinCode}",
+                    title:
+                        "${widget.deliveryAddressList.firstName} \r${widget.deliveryAddressList.lastName}",
+                    number: "${widget.deliveryAddressList.phone}",
+                    addressType: widget.deliveryAddressList.addressType ==
+                            "AddressTypes.Other"
+                        ? "Other"
+                        : widget.deliveryAddressList.addressType ==
+                                "AddressTypes.Home"
+                            ? "Home"
+                            : "Work",
+                  ),
+                  Divider(),
+                  ExpansionTile(
+                    children: revierCartProvider.getReviewCartDataList.map((e) {
+                      return OrderItem(e: e);
+                    }).toList(),
+                    title: Text("รายการอาหาร ${revierCartProvider.getReviewCartDataList.length}"),
+                  ),
+                  Divider(),
+                  ListTile(
+                    minVerticalPadding: 5,
+                    leading: Text(
+                      "รวมทั้งหมด",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    trailing: Text(
+                      "${totalPrice} \rบาท",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                  trailing:  Text(
+                  ListTile(
+                    minVerticalPadding: 5,
+                    leading: Text(
+                      "ส่วนลด",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    trailing: Text(
                       "200 \rบาท",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
-                  ),
-                ),
-                ListTile(
-                  minVerticalPadding: 5,
-                  leading: Text(
-                    "ส่วนลด",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  trailing:  Text(
-                    "200 \rบาท",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                  ListTile(
+                    minVerticalPadding: 5,
+                    leading: Text(
+                      "ราคาสุทธิ",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    trailing: Text(
+                      "${totalPrice} \rบาท",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                ListTile(
-                  minVerticalPadding: 5,
-                  leading: Text(
-                    "ส่วนลด",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                  Divider(),
+                  ListTile(
+                    leading: Text("เลือกช่องทางชำระเงิน"),
+                  ),
+                  RadioListTile(
+                    value: PaymentTypes.Cash,
+                    groupValue: _paymentTypes,
+                    title: Text("เงินสด"),
+                    onChanged: (value) {
+                      setState(() {
+                        _paymentTypes = value;
+                      });
+                    },
+                    secondary: Icon(
+                      Icons.local_atm_outlined,
+                      color: memberColor,
                     ),
                   ),
-                  trailing:  Text(
-                    "60 \rบาท",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                  RadioListTile(
+                    value: PaymentTypes.online,
+                    groupValue: _paymentTypes,
+                    title: Text("โอนผ่านธนาคาร"),
+                    onChanged: (value) {
+                      setState(() {
+                        _paymentTypes = value;
+                      });
+                    },
+                    secondary: Icon(
+                      Icons.atm_outlined,
+                      color: memberColor,
                     ),
                   ),
-                ),
-                Divider(),
-                ListTile(
-                  leading: Text("เลือกช่องทางชำระเงิน"),
-                ),
-                RadioListTile(
-                  value: PaymentTypes.Cash,
-                  groupValue: _paymentTypes,
-                  title: Text("เงินสด"),
-                  onChanged: (value) {
-                    setState(() {
-                      _paymentTypes = value;
-                    });
-                  },
-                  secondary: Icon(
-                    Icons.local_atm_outlined,
-                    color: memberColor,
-                  ),
-                ),
-                RadioListTile(
-                  value: PaymentTypes.online,
-                  groupValue: _paymentTypes,
-                  title: Text("โอนผ่านธนาคาร"),
-                  onChanged: (value) {
-                    setState(() {
-                      _paymentTypes = value;
-                    });
-                  },
-                  secondary: Icon(
-                    Icons.atm_outlined,
-                    color: memberColor,
-                  ),
-                ),
-              ],
-            );
-          }
-        ),
+                ],
+              );
+            }),
       ),
     );
   }

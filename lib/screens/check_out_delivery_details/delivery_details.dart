@@ -52,7 +52,9 @@ class _DeliveryDetailsState extends State<DeliveryDetails> {
                   )
                 : Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => PaymentSummary(),
+                      builder: (context) => PaymentSummary(
+                        deliveryAddressList: value,
+                      ),
                     ),
                   );
           },
