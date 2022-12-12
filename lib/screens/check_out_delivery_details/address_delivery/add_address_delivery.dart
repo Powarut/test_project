@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_project/constants/color.dart';
 import 'package:test_project/providers/check_out_provider.dart';
+import 'package:test_project/screens/check_out_delivery_details/google_map/google_map.dart';
 import 'package:test_project/widgets/costom_text_field.dart';
 
 class AddDeliveryAddressState extends StatefulWidget {
@@ -34,25 +35,27 @@ class _AddDeliveryAddressStateState extends State<AddDeliveryAddressState> {
       bottomNavigationBar: Container(
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         height: 48,
-        child: checkoutProvider.isloadding==false? MaterialButton(
-          onPressed: () {
-            checkoutProvider.vaildator(context,myType);
-          },
-          child: Text(
-            "เพิ่มที่อยู่",
-            style: TextStyle(
-              color: textColor,
-            ),
-          ),
-          color: memberColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              30,
-            ),
-          ),
-        ):Center(
-          child: CircularProgressIndicator(),
-        ),
+        child: checkoutProvider.isloadding == false
+            ? MaterialButton(
+                onPressed: () {
+                  checkoutProvider.vaildator(context, myType);
+                },
+                child: Text(
+                  "เพิ่มที่อยู่",
+                  style: TextStyle(
+                    color: textColor,
+                  ),
+                ),
+                color: memberColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                    30,
+                  ),
+                ),
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              ),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(
@@ -93,7 +96,13 @@ class _AddDeliveryAddressStateState extends State<AddDeliveryAddressState> {
               controller: checkoutProvider.pincode,
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => CostomGoogleMap(),
+                  ),
+                );
+              },
               child: Container(
                 height: 47,
                 width: double.infinity,

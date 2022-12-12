@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:location/location.dart';
 
 class CheckoutProvider with ChangeNotifier{
   bool isloadding =false;
@@ -14,6 +15,7 @@ class CheckoutProvider with ChangeNotifier{
   TextEditingController landmark = TextEditingController();
   TextEditingController city = TextEditingController();
   TextEditingController pincode = TextEditingController();
+   LocationData? setLocation;
   
   void vaildator(context,myType) async {
     if (firstName.text.isEmpty) {
@@ -30,14 +32,16 @@ class CheckoutProvider with ChangeNotifier{
       Fluttertoast.showToast(msg: "โปรดใส่ตำบล/แขวง");
     }else if (city.text.isEmpty){
       Fluttertoast.showToast(msg: "โปรดใส่อำเภอ");
-    }else if (pincode.text.isEmpty){
+    }else if (pincode.text.isEmpty) {
+      Fluttertoast.showToast(msg: "โปรดใส่รหัสไปรษณีย์");
+    }else if (setLocation!.latitude==null){
       Fluttertoast.showToast(msg: "โปรดใส่รหัสไปรษณีย์");
     }else{
       isloadding = true;
       notifyListeners();
       await FirebaseFirestore.instance
           .collection("OrderDetail")
-          .doc("docID")
+          .doc()
           .set({
             "UserName":firstName.text,
             "UserSurname":firstName.text,
@@ -48,6 +52,8 @@ class CheckoutProvider with ChangeNotifier{
             "UserCity":firstName.text,
             "UserPinCode":firstName.text,
             "AddressType":myType.toString(),
+            "longitude":setLocation!.longitude,
+            "latitude":setLocation!.latitude,
       }).then((value)  async{
         isloadding = false;
         notifyListeners();

@@ -54,7 +54,8 @@ dependencies:
   logger: ^1.0.0
   file_picker: ^5.2.3
   firebase_storage: ^11.0.7
-
+  location:
+  google_maps_flutter:
 
 
 dev_dependencies:
