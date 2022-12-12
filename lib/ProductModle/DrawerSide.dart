@@ -4,6 +4,7 @@ import 'package:test_project/cart/review_cart.dart';
 import 'package:test_project/Member/Edit%20Member.dart';
 import 'package:test_project/Member/QR%20Code.dart';
 import 'package:test_project/constants/color.dart';
+import 'package:test_project/screens/check_out_delivery_details/delivery_details.dart';
 import 'package:test_project/welcome_pange.dart';
 
 class DrawerSide extends StatelessWidget {
@@ -46,7 +47,7 @@ class DrawerSide extends StatelessWidget {
                   style: TextStyle(fontSize: 16)),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return EditMember();
+                  return DeliveryDetails();
                 }));
               },
             ),
