@@ -23,7 +23,7 @@ class _MemberOrderState extends State<MemberOrder> {
               elevation: 5,
               margin: const EdgeInsets.symmetric(vertical: 8,horizontal: 5),
               child: ListTile(
-                leading: Text("รอยืนยัน"),
+                leading: Text("สำเร็จ",style: TextStyle(color: Colors.green),),
                 title: Text("Er5l6HrLbRnMX4fmHenb"),
                 subtitle: Text("วันที่:10/11/2022 "+"\r เวลา: 15:05"),
                 onTap: () {
