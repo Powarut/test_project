@@ -36,7 +36,7 @@ class CheckoutProvider with ChangeNotifier {
     } else if (pincode.text.isEmpty) {
       Fluttertoast.showToast(msg: "โปรดใส่รหัสไปรษณีย์");
     } else if (setLocation!.latitude == null) {
-      Fluttertoast.showToast(msg: "โปรดใส่รหัสไปรษณีย์");
+      Fluttertoast.showToast(msg: "โปรดตั้งโลเคชั่น");
     } else {
       isloadding = true;
       notifyListeners();

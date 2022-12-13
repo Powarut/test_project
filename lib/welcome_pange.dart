@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/Member/HomeMember.dart';
 import 'package:test_project/Member/MemberLogin.dart';
 import 'package:test_project/Owner/OwnerLogin.dart';
-import 'package:test_project/Owner/manage_menu.dart';
 import 'package:test_project/ProductModle/Hometest.dart';
 import 'package:test_project/Rider/RiderLogin.dart';
 import 'package:test_project/constants/color.dart';
-import 'package:test_project/screens/check_out_delivery_details/delivery_details.dart';
+import 'package:test_project/widgets/add_menu.dart';
 
 class Homescreen extends StatelessWidget {
   @override
@@ -23,7 +21,8 @@ class Homescreen extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                Text("ยินดีต้อนรับ",
+                Text(
+                  "ยินดีต้อนรับ",
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -52,7 +51,8 @@ class Homescreen extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton.icon(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(memberColor),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(memberColor),
                     ),
                     icon: Icon(Icons.people_alt_outlined),
                     label: Text("ลูกค้า", style: TextStyle(fontSize: 20)),
@@ -68,7 +68,8 @@ class Homescreen extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton.icon(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(riderColor),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(riderColor),
                     ),
                     icon: Icon(Icons.delivery_dining),
                     label: Text("พนักงานส่ง", style: TextStyle(fontSize: 20)),
@@ -84,7 +85,8 @@ class Homescreen extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton.icon(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(ownerColor),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(ownerColor),
                     ),
                     icon: Icon(Icons.restaurant),
                     label: Text("เจ้าของร้าน", style: TextStyle(fontSize: 20)),
@@ -104,7 +106,7 @@ class Homescreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return DeliveryDetails();
+                        return AddMenu();
                       }));
                     },
                   ),

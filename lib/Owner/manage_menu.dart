@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:test_project/widgets/add_menu.dart';
 import '../Model/ow_create.dart';
 
 class manage_menu extends StatefulWidget {
@@ -42,7 +44,7 @@ class _manage_menuState extends State<manage_menu> {
                   trailing: Wrap(
                     children: [
                       IconButton(
-                        icon: Icon(Icons.lock_clock),
+                        icon: Icon(Icons.edit),
                         onPressed: () {
                           final docFood = FirebaseFirestore.instance
                               .collection('Food')
@@ -70,7 +72,7 @@ class _manage_menuState extends State<manage_menu> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return Ow_create();
+            return AddMenu();
           }));
         },
         child: Icon(Icons.add_sharp),

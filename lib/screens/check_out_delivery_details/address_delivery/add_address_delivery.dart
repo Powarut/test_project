@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:test_project/constants/color.dart';
 import 'package:test_project/providers/check_out_provider.dart';
 import 'package:test_project/screens/check_out_delivery_details/google_map/google_map.dart';
-import 'package:test_project/widgets/costom_text_field.dart';
+import 'package:test_project/constants/costom_text_field.dart';
 
 class AddDeliveryAddress extends StatefulWidget {
  

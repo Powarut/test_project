@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:test_project/providers/check_out_provider.dart';
 import 'package:test_project/providers/product_provider.dart';
 import 'package:test_project/providers/reviewcart_provider.dart';
+import 'package:test_project/providers/store_provider.dart';
 import 'package:test_project/providers/user_provider.dart';
 import 'package:test_project/welcome_pange.dart';
 
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider<CheckoutProvider>(
             create: (context) =>CheckoutProvider(),
+          ),
+          ChangeNotifierProvider<StoreProvider>(
+            create: (context) =>StoreProvider(),
           ),
         ],
         child: MaterialApp(

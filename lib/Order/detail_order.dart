@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/Owner/HomeOwner.dart';
+import 'package:test_project/constants/color.dart';
 
 class detailOrder extends StatefulWidget {
   const detailOrder({Key? key}) : super(key: key);
@@ -31,19 +32,19 @@ class _detailOrderState extends State<detailOrder> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      Text(
+                        "Er5l6HrLbRnMX4fmHenb",
+                        style: TextStyle(color: textColor,fontSize: 20,fontWeight: FontWeight.bold),
+                      ),
                       Center(
                         child: Text(
                           "สถานะ: รอรับออเดอร์ ",
                           style: TextStyle(color:Colors.black26,fontSize: 20),
                         ),
                       ),
-                      Text(
-                        "หมายเลขบิล",
-                        style: TextStyle(fontSize: 25),
-                      ),
                       Center(
                         child: Text(
-                          "ชื่อ : "+"\r นามสกุล: ",
+                          "ผู้สั่ง\r"+"สมชาย\rทรงพล  ",
                           style: TextStyle(fontSize: 20),
                         ),
                       ),

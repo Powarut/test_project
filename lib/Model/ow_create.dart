@@ -157,11 +157,7 @@ class _Ow_createState extends State<Ow_create> {
       child: IconButton(
         icon: Icon(Icons.add_a_photo_outlined,size: 50,),
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) {
-                return uploadImage();
-              }));
-        },
+          },
       ),
     );
   }

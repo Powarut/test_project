@@ -98,7 +98,7 @@ class _MemberLoginState extends State<MemberLogin> {
                                       formKey.currentState!.reset();
                                       Navigator.pushReplacement(context,
                                           MaterialPageRoute(builder: (context) {
-                                        return Hometest();
+                                        return HomeMember();
                                       }));
                                     });
                                   } on FirebaseAuthException catch (e) {

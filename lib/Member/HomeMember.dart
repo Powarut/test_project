@@ -1,35 +1,38 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:test_project/ProductModle/DrawerSide.dart';
 import 'package:test_project/constants/color.dart';
+import 'package:test_project/providers/store_provider.dart';
 import 'package:test_project/welcome_pange.dart';
 import 'package:test_project/Member/Edit%20Member.dart';
 import 'package:test_project/Member/QR%20Code.dart';
 
-
 class HomeMember extends StatefulWidget {
-
   @override
   State<HomeMember> createState() => _HomeMemberState();
 }
 
 class _HomeMemberState extends State<HomeMember> {
+  int count =0;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        drawer: DrawerSide(),
-        appBar: AppBar(
-          backgroundColor: memberColor,
-          elevation: 0,
-          title: Text(
-            "Home",
-            style: TextStyle(color: Colors.white),
-          ),
-          centerTitle: true,
+    return Scaffold(
+      drawer: DrawerSide(),
+      appBar: AppBar(
+        backgroundColor: memberColor,
+        elevation: 0,
+        title: Text(
+          "Home",
+          style: TextStyle(color: Colors.white),
         ),
-        body: StreamBuilder(
+        centerTitle: true,
+
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 15),
+        child: StreamBuilder(
           stream: FirebaseFirestore.instance.collection("Food").snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -40,47 +43,66 @@ class _HomeMemberState extends State<HomeMember> {
             }
             return ListView(
               children: snapshot.data!.docs.map((document) {
-                return Container(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Image(
-                            height: 80,
-                            width: 100,
-                            image: NetworkImage(document['FoodImage'])),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Text(
-                            document["FoodName"] + " " + r" ",
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            document["FoodPrice"] + "\rบาท",
-                            style: TextStyle(
-                                fontSize: 16 ),
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {
-
-                          },
-                          icon: Icon(
-                            Icons.add_circle,
-                          ),
-                        ),
-                      ],
-                    ));
+                return Row(
+                  children: [
+                    Image(
+                        height: 80,
+                        width: 100,
+                        image: NetworkImage(document['FoodImage'])),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Text(
+                        document["FoodName"] + " " + r" ",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        document["FoodPrice"] + "\rบาท",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          count --;
+                        });
+                      },
+                      icon: Icon(
+                        Icons.remove_circle,
+                      ),
+                    ),
+                    Text("${count}",style: TextStyle(color: textColor),),
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          count ++;
+                        });
+                      },
+                      icon: Icon(
+                        Icons.add_circle,
+                      ),
+                    ),
+                  ],
+                );
               }).toList(),
             );
           },
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 48,
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        child: MaterialButton(
+          child: Text("รวมยอดสั่ง: 0\rบาท"),
+          onPressed: (){},
+          color: memberColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
         ),
       ),
     );
