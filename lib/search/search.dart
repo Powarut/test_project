@@ -69,11 +69,8 @@ class _SearchState extends State<Search> {
               return SingleItem(
                 isBool: false,
                 productImage: data.productImage,
-                productName: data.productName!,
+                productName: data.productName,
                 productPrice: data.productPrice,
-                productId: '',
-                productQuantity: 1,
-                onDelete: (){},
                 productUnit: data.productPrice,
               );
             }).toList(),

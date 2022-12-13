@@ -7,22 +7,22 @@ import 'package:test_project/widgets/count.dart';
 
 class SingleItem extends StatefulWidget {
   bool isBool = false;
-  String productImage;
-  String productName;
-  int productPrice;
-  String productId;
-  int productQuantity;
-  Function onDelete;
+  String? productImage;
+  String? productName;
+  int? productPrice;
+  String? productId;
+  int? productQuantity;
+  Function? onDelete;
   var productUnit;
   SingleItem(
-      {required this.productQuantity,
-        required this.productId,
-        required this.productUnit,
-        required this.onDelete,
+      { this.productQuantity,
+        this.productId,
+        this.productUnit,
+        this.onDelete,
         required this.isBool,
-        required this.productImage,
-        required this.productName,
-        required this.productPrice,
+        this.productImage,
+        this.productName,
+        this.productPrice,
         });
 
   @override
@@ -34,7 +34,7 @@ class _SingleItemState extends State<SingleItem> {
   late int count;
   getCount() {
     setState(() {
-      count = widget.productQuantity;
+      count = widget.productQuantity!;
     });
   }
 
@@ -54,7 +54,7 @@ class _SingleItemState extends State<SingleItem> {
                   height: 90,
                   child: Center(
                     child: Image.network(
-                      widget.productImage,
+                      widget.productImage!,
                     ),
                   ),
                 ),
@@ -72,7 +72,7 @@ class _SingleItemState extends State<SingleItem> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            widget.productName,
+                            widget.productName!,
                             style: TextStyle(
                                 color: textColor,
                                 fontWeight: FontWeight.bold,
@@ -159,10 +159,10 @@ class _SingleItemState extends State<SingleItem> {
                       : EdgeInsets.only(left: 15, right: 15),
                   child: widget.isBool == false
                       ? Count(
-                    productId: widget.productId,
-                    productImage: widget.productImage,
-                    productName: widget.productName,
-                    productPrice: widget.productPrice,
+                    productId: widget.productId!,
+                    productImage: widget.productImage!,
+                    productName: widget.productName!,
+                    productPrice: widget.productPrice!,
                   )
                       : Padding(
                     padding: const EdgeInsets.only(top: 8),

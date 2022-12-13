@@ -5,19 +5,19 @@ import 'package:test_project/constants/color.dart';
 import 'package:test_project/widgets/count.dart';
 
 class SingalProduct extends StatelessWidget {
-  String productImage;
-  String productName;
-  int productPrice;
+  String? productImage;
+  String? productName;
+  int? productPrice;
   Function onTap;
-  String productId;
-  final ProductModel productUnit;
+  String? productId;
+  ProductModel? productUnit;
   SingalProduct({
-    required this.productImage,
-    required this.productName,
-    required this.productPrice,
+    this.productImage,
+    this.productName,
+    this.productPrice,
     required this.onTap,
-    required this.productId,
-    required this.productUnit,
+    this.productId,
+    this.productUnit,
   });
 
   @override
@@ -54,7 +54,7 @@ class SingalProduct extends StatelessWidget {
                     padding: EdgeInsets.all(5),
                     width: double.infinity,
                     child: Image.network(
-                      productImage,
+                      productImage!,
                     ),
                   ),
                 ),
@@ -68,7 +68,7 @@ class SingalProduct extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            productName,
+                            productName!,
                             style: TextStyle(
                               color: textColor,
                               fontWeight: FontWeight.bold,
@@ -115,10 +115,10 @@ class SingalProduct extends StatelessWidget {
                                   width: 5,
                                 ),
                                 Count(
-                                  productId: productId,
-                                  productName: productName,
-                                  productImage: productImage,
-                                  productPrice: productPrice,
+                                  productId: productId!,
+                                  productName: productName!,
+                                  productImage: productImage!,
+                                  productPrice: productPrice!,
                                 ),
                               ],
                             ),
