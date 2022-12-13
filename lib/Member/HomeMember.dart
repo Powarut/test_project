@@ -1,13 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:test_project/ProductModle/DrawerSide.dart';
 import 'package:test_project/constants/color.dart';
-import 'package:test_project/providers/store_provider.dart';
-import 'package:test_project/welcome_pange.dart';
-import 'package:test_project/Member/Edit%20Member.dart';
-import 'package:test_project/Member/QR%20Code.dart';
 
 class HomeMember extends StatefulWidget {
   @override

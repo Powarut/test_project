@@ -122,7 +122,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                       ),
                     ),
                     trailing: Text(
-                      "200 \rบาท",
+                      "${totalPrice} \rบาท",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),

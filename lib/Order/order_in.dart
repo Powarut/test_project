@@ -22,6 +22,7 @@ class _orderINState extends State<orderIN> {
               elevation: 5,
               margin: const EdgeInsets.symmetric(vertical: 8,horizontal: 5),
               child: ListTile(
+                leading: Text("รอ"),
                 title: Text("Er5l6HrLbRnMX4fmHenb"),
                 subtitle: Text("วันที่:10/11/2022 "+"\r เวลา: 15:05"),
                 onTap: () {
@@ -32,7 +33,7 @@ class _orderINState extends State<orderIN> {
               ),
             );
           }
-      )
+      ),
     );
   }
 }

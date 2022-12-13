@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_project/constants/color.dart';
 
 class gps extends StatefulWidget {
   const gps({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class _gpsState extends State<gps> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: riderColor,
         elevation: 0,
         title: Text(
           'GPS',

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:test_project/Data/DataRider.dart';
+import 'package:test_project/Rider/RiderLogin.dart';
 import 'package:test_project/constants/color.dart';
 
 class RiderRegister extends StatefulWidget {
@@ -149,7 +150,7 @@ class _RiderRegisterState extends State<RiderRegister> {
                                           gravity: ToastGravity.TOP);
                                       Navigator.pushReplacement(context,
                                           MaterialPageRoute(builder: (context) {
-                                        return RiderRegister();
+                                        return RiderLogin();
                                       }));
                                     });
                                   } on FirebaseAuthException catch (e) {

@@ -4,7 +4,7 @@ import 'package:test_project/constants/color.dart';
 import 'package:test_project/welcome_pange.dart';
 import 'package:test_project/Order/order_delivery.dart';
 import 'package:test_project/Order/order_finish.dart';
-import 'package:test_project/Rider/Delivery.dart';
+import 'package:test_project/Rider/delivery/Delivery.dart';
 import 'package:test_project/Rider/ScanQRCode.dart';
 
 class HomeRider extends StatefulWidget {
@@ -66,7 +66,7 @@ class _HomeRiderState extends State<HomeRider>
               controller: _tabController,
               children: <Widget>[
                 delivery(),
-                orderfinish()
+                orderfinish(),
               ],
             ),
           ),
@@ -82,20 +82,26 @@ class _HomeRiderState extends State<HomeRider>
                 decoration: BoxDecoration(
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcF9gjzHsADmFvKCSTTAr96wu20WP7rmu_AmmFycnQiqKXCW_rUgGnxyuHsWYfxnhhUK0&usqp=CAU")
-                  ),
+                      image: NetworkImage(
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcF9gjzHsADmFvKCSTTAr96wu20WP7rmu_AmmFycnQiqKXCW_rUgGnxyuHsWYfxnhhUK0&usqp=CAU")),
                 ),
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: AssetImage("assets/images/user.png"),
                 ),
-                accountName: Text("M M"),
+                accountName: Text(
+                  "สมชาย คำสิงห์",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
                 accountEmail: Text(profile.email!),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               ListTile(
-                trailing: Icon(Icons.qr_code_scanner_outlined,color: textColor),
-                title: const Text('Scan QR Code',
-                    style: TextStyle(fontSize: 16)),
+                trailing:
+                    Icon(Icons.qr_code_scanner_outlined, color: textColor),
+                title:
+                    const Text('Scan QR Code', style: TextStyle(fontSize: 16)),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return ScanQRCode();
@@ -107,14 +113,14 @@ class _HomeRiderState extends State<HomeRider>
                 color: Colors.black87,
               ),
               ListTile(
-                trailing: Icon(Icons.logout,color: textColor),
-                title:  Text('ลงชื่อออก', style: TextStyle(fontSize: 16)),
+                trailing: Icon(Icons.logout, color: textColor),
+                title: Text('ลงชื่อออก', style: TextStyle(fontSize: 16)),
                 onTap: () {
                   FirebaseAuth.instance.signOut().then((value) {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) {
-                          return Homescreen();
-                        }));
+                      return Homescreen();
+                    }));
                   });
                 },
               ),

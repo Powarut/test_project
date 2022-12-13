@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:test_project/constants/color.dart';
 
 class qrcreate extends StatefulWidget {
   const qrcreate({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class _qrcreateState extends State<qrcreate> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: memberColor,
         centerTitle: true,
         title: Text(
           'แสดง QR Code',
@@ -57,7 +59,7 @@ class _qrcreateState extends State<qrcreate> {
             SizedBox(height: 24.0),
             RawMaterialButton(
                 onPressed: (){},
-              fillColor: Colors.blue,
+              fillColor: memberColor,
               shape: StadiumBorder(),
               padding: EdgeInsets.symmetric(
                 horizontal: 36.0,
