@@ -20,7 +20,6 @@ class _AddMenuState extends State<AddMenu> {
   TextEditingController nameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   var selectMenu;
-  var categories = ['อาหารตามสั่ง', 'เครื่องดื่ม', 'ก๋วยเตี๋ยว'];
   var imageUrl;
   var imageFile;
   void _imageFromGallery()async{
@@ -116,26 +115,6 @@ class _AddMenuState extends State<AddMenu> {
               height: 15,
             ),
             menuFields("ตั้งราคา", "ราคา", priceController),
-            Container(
-              padding:
-                  EdgeInsets.only(top: 20, bottom: 14, left: 20, right: 20),
-              margin: EdgeInsets.only(top: 20, bottom: 20, left: 20, right: 20),
-              child: DropdownButton(
-                hint: Text("ระบุประเภทหมวดอาหาร"),
-                value: selectMenu,
-                onChanged: (newValue) {
-                  setState(() {
-                    selectMenu = newValue;
-                  });
-                },
-                items: categories.map((category) {
-                  return DropdownMenuItem(
-                    child: new Text(category),
-                    value: category,
-                  );
-                }).toList(),
-              ),
-            ),
             imageSection(),
             InkWell(
               onTap: () async{

@@ -27,8 +27,8 @@ class ReviewCart extends StatelessWidget {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("รถเข็น"),
-      content: Text("คุณต้องการลบเมนูนี้ออกจากรถเข็นหรือไม่?"),
+      title: Text("รับออเดอร์"),
+      content: Text("คุณต้องการรับออเดอร์นี้หรือไม่?"),
       actions: [
         cancelButton,
         continueButton,

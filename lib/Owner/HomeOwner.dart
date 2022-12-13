@@ -67,7 +67,7 @@ class _HomeOwnerState extends State<HomeOwner>
               controller: _tabController,
               children:[
                 orderIN(),
-                orderdelivery(),
+                orderSend(),
                 orderfinish(),
               ],
             ),
@@ -90,8 +90,8 @@ class _HomeOwnerState extends State<HomeOwner>
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: AssetImage("assets/images/user.png"),
                 ),
-                accountName: Text("M M"),
-                accountEmail: Text(profile.email!),
+                accountName: Text("Resturant",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+                accountEmail: Text(profile.email!,style: TextStyle(fontSize: 15),),
               ),
               SizedBox(height: 20,),
               ListTile(

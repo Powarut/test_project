@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/Owner/HomeOwner.dart';
+import 'package:test_project/Rider/delivery/order_delivery.dart';
+import 'package:test_project/constants/color.dart';
 
-class orderdelivery extends StatefulWidget {
-  const orderdelivery({Key? key}) : super(key: key);
+class orderSend extends StatefulWidget {
+  const orderSend({Key? key}) : super(key: key);
 
   @override
-  State<orderdelivery> createState() => _orderdeliveryState();
+  State<orderSend> createState() => _orderSendState();
 }
 
-class _orderdeliveryState extends State<orderdelivery> {
+class _orderSendState extends State<orderSend> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: ListView.builder(
-            itemCount: 4,
+            itemCount: 1,
             itemBuilder: (context, int index){
               return Card(
                 elevation: 5,
                 margin: const EdgeInsets.symmetric(vertical: 8,horizontal: 5),
                 child: ListTile(
-                  title: Text("รหัสบิล"),
+                  leading: Text("รอจัดส่ง"),
+                  title: Text("VcCUkXUnezOy7Vri9x3kLSVrR2N2"),
                   subtitle: Text("วันที่:10/11/2022 "+"\r เวลา: 15:05"),
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return orderDelivery();
+                      return orderSendDetail();
                     }));
                   },
                 ),
@@ -33,116 +36,105 @@ class _orderdeliveryState extends State<orderdelivery> {
     );
   }
 }
-class orderDelivery extends StatefulWidget {
-  const orderDelivery({Key? key}) : super(key: key);
+
+class orderSendDetail extends StatefulWidget {
+  const orderSendDetail({Key? key}) : super(key: key);
 
   @override
-  State<orderDelivery> createState() => _orderDeliveryState();
+  State<orderSendDetail> createState() => _orderSendDetailState();
 }
 
-class _orderDeliveryState extends State<orderDelivery> {
+class _orderSendDetailState extends State<orderSendDetail> {
+  void showAlertDialog(BuildContext context) {
+    // set up the buttons
+    Widget cancelButton = TextButton(
+      child: Text("ไม่"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = TextButton(
+      child: Text("ใช่"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("จัดส่งออเดอร์"),
+      content: Text("พร้อมจัดส่งแล้วใช่ไหม?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
-        elevation: 0,
-        title: Text(
-          'รายละเอียดออเดอร์',
-          style: TextStyle(color: Colors.white),
+        backgroundColor: ownerColor,
+        title: Text("รายละเอียดออเดอร์"),
+      ),
+      bottomNavigationBar: Container(
+        child: MaterialButton(
+          onPressed: () {
+            showAlertDialog(context);
+          },
+          child: Text("จัดส่งอาหาร"),
+          color: ownerColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          child: SizedBox(
-              width: double.infinity,
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Center(
-                        child: Text(
-                          "สถานะ: เตรียมอาหาร ",
-                          style: TextStyle(color:Colors.black38,fontSize: 20),
-                        ),
-                      ),
-                      Text(
-                        "หมายเลขบิล",
-                        style: TextStyle(fontSize: 25),
-                      ),
-                      Center(
-                        child: Text(
-                          "ชื่อ : "+"\r นามสกุล: ",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                      Text(
-                        "เบอร์โทรศัพท์",
-                        style: TextStyle(fontSize: 25),
-                      ),
-                      Center(
-                        child: Text(
-                          "087-123xxxx",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                      SizedBox(height: 10,),
-                      Text(
-                        "สถานที่จัดส่ง",
-                        style: TextStyle(fontSize: 25),
-                      ),
-                      Text(
-                        "รายละเอียดพิกัด",
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      SizedBox(height: 10,),
-                      Text(
-                        "รายการอาหาร",
-                        style: TextStyle(fontSize: 25),
-                      ),
-
-                      Center(
-                        child: Text(
-                          "ชื่ออาหาร "+"\r จำนวน ",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                      SizedBox(height: 10,),
-                      Text(
-                        "ราคาทั้งหมด : "+"\rบาท",
-                        style: TextStyle(fontSize: 25),
-                      ),
-
-                      SizedBox(height: 20,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          SizedBox(
-                            child: ElevatedButton.icon(
-                              icon: Icon(Icons.add),
-                              label: Text("จัดส่ง",
-                                  style: TextStyle(fontSize: 20)),
-                              onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                      return HomeOwner();
-                                    }));
-                              },
-                            ),
-                          ),
-
-                        ],
-                      ),
+        padding: const EdgeInsets.only(top: 10),
+        child: ListView.builder(
+            itemCount: 1,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  ListTile(
+                    title: Text("สมพงษ์ ทรงพล   \r 0871231234"),
+                    subtitle: Text(
+                        "บ้านเลขที่: 556 ,ซอย/ถนน: สุขุมวิท30,ตำบล/แขวง: พระราม9,อำเภอ/เขต:บางนา, 12094"),
+                  ),
+                  Divider(),
+                  ExpansionTile(
+                    title: Text("รายการอาหาร 1"),
+                    children: [
+                      OrderDelivery(),
                     ],
                   ),
-                ),
-              )),
-        ),
+                  Divider(),
+                  ListTile(
+                    minVerticalPadding: 5,
+                    leading: Text(
+                      "ยอดชำระ",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    trailing: Text(
+                      "100\r บาท",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Divider(),
+                ],
+              );
+            }),
       ),
     );
   }
 }
+
 
