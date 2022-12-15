@@ -54,7 +54,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                       children: [
                         Padding(
                           padding:
-                          const EdgeInsets.only(right: 130, bottom: 10),
+                              const EdgeInsets.only(right: 130, bottom: 10),
                           child: Container(
                             height: 50,
                             width: 100,
@@ -108,16 +108,62 @@ class _HomeWidgetState extends State<HomeWidget> {
                 ],
               ),
             ),
-            
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("อาหารตามสั่ง"),
-                  Text("ดูทั้งหมด")
+                  Text(
+                    "ดูทั้งหมด",
+                    style: TextStyle(color: Colors.grey),
+                  ),
                 ],
               ),
+            ),
+            Row(
+              children: [
+                Container(
+                  height: 230,
+                  width: 160,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                          flex: 2,
+                          child: Image.network(
+                              'https://firebasestorage.googleapis.com/v0/b/project-3e0ab.appspot.com/o/%E0%B8%81%E0%B8%B0%E0%B9%80%E0%B8%9E%E0%B8%A3%E0%B8%B2.jpg?alt=media&token=dfaf4fc3-4032-41df-a858-a894f63d97ac')),
+                      Expanded(
+                        child: Container(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'กะเพรา',
+                                  style: TextStyle(
+                                      color: textColor,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  '50\rบาท',
+                                  style: TextStyle(
+                                      color: Colors.grey[600],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             )
           ],
         ),
