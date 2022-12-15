@@ -119,7 +119,7 @@ class _HomeRiderState extends State<HomeRider>
                   FirebaseAuth.instance.signOut().then((value) {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) {
-                      return Homescreen();
+                      return WelcomeScreen();
                     }));
                   });
                 },

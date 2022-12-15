@@ -115,7 +115,7 @@ class _HomeOwnerState extends State<HomeOwner>
                   FirebaseAuth.instance.signOut().then((value) {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) {
-                          return Homescreen();
+                          return WelcomeScreen();
                         }));
                   });
                 },

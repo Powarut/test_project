@@ -86,7 +86,7 @@ class DrawerSide extends StatelessWidget {
                 FirebaseAuth.instance.signOut().then((value) {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) {
-                        return Homescreen();
+                        return WelcomeScreen();
                       }));
                 });
               },

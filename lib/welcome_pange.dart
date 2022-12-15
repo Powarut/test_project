@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/Member/MemberLogin.dart';
+import 'package:test_project/Member/home_widget.dart';
 import 'package:test_project/Owner/OwnerLogin.dart';
-import 'package:test_project/ProductModle/Hometest.dart';
 import 'package:test_project/Rider/RiderLogin.dart';
 import 'package:test_project/constants/color.dart';
 import 'package:test_project/widgets/add_menu.dart';
 
-class Homescreen extends StatelessWidget {
+class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,11 +102,11 @@ class Homescreen extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton.icon(
                     icon: Icon(Icons.delivery_dining),
-                    label: Text("test Cart", style: TextStyle(fontSize: 20)),
+                    label: Text("หน้าทดสอบ", style: TextStyle(fontSize: 20)),
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return AddMenu();
+                        return HomeWidget();
                       }));
                     },
                   ),
