@@ -7,17 +7,15 @@ import 'package:test_project/widgets/count.dart';
 class SingalProduct extends StatelessWidget {
   String? productImage;
   String? productName;
-  int? productPrice;
-  Function onTap;
-  String? productId;
-  ProductModel? productUnit;
+   int? productPrice;
+  Function? onTap;
+   String? productId;
   SingalProduct({
     this.productImage,
-    this.productName,
-    this.productPrice,
-    required this.onTap,
-    this.productId,
-    this.productUnit,
+     this.productName,
+     this.productPrice,
+     this.onTap,
+     this.productId,
   });
 
   @override
@@ -54,7 +52,7 @@ class SingalProduct extends StatelessWidget {
                     padding: EdgeInsets.all(5),
                     width: double.infinity,
                     child: Image.network(
-                      productImage!,
+                      productImage??"",
                     ),
                   ),
                 ),
@@ -63,67 +61,24 @@ class SingalProduct extends StatelessWidget {
                   child: Padding(
                     padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            productName!,
-                            style: TextStyle(
-                              color: textColor,
-                              fontWeight: FontWeight.bold,
-                            ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          productName??"",
+                          style: TextStyle(
+                            color: textColor,
+                            fontWeight: FontWeight.bold,
                           ),
-                          Text(
-                            '$productPrice',
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Row(
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    padding: EdgeInsets.only(left: 5),
-                                    height: 25,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Colors.grey,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                            child: Text(
-                                              'หมู',
-                                              style: TextStyle(fontSize: 10),
-                                            )),
-                                        Center(
-                                          child: Icon(
-                                            Icons.arrow_drop_down,
-                                            size: 19,
-                                            color: Colors.brown,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Count(
-                                  productId: productId!,
-                                  productName: productName!,
-                                  productImage: productImage!,
-                                  productPrice: productPrice!,
-                                ),
-                              ],
-                            ),
-                        ],
-                      ),
+                        ),
+                        Text(
+                          '$productPrice',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -135,3 +90,5 @@ class SingalProduct extends StatelessWidget {
     );
   }
 }
+
+

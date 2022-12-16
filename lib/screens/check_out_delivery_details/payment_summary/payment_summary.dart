@@ -22,6 +22,41 @@ enum PaymentTypes {
 
 class _PaymentSummaryState extends State<PaymentSummary> {
   PaymentTypes? _paymentTypes;
+
+  void showAlertDialog(BuildContext context) {
+    // set up the buttons
+    Widget cancelButton = TextButton(
+      child: Text("ไม่"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = TextButton(
+      child: Text("ใช่"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("สั่งอาหาร"),
+      content: Text("คุณยืนยันการสั่งอาหารออเดอร์นี้ใช่ไหม?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     ReviewCartProvider revierCartProvider = Provider.of(context);
@@ -52,7 +87,9 @@ class _PaymentSummaryState extends State<PaymentSummary> {
         trailing: Container(
           width: 160,
           child: MaterialButton(
-            onPressed: () {},
+            onPressed: () {
+              showAlertDialog(context);
+            },
             child: Text(
               "ยืนยันการสั่ง",
               style: TextStyle(
