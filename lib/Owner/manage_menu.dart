@@ -1,81 +1,79 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:test_project/widgets/add_menu.dart';
-import '../Model/ow_create.dart';
+import 'package:test_project/Owner/menu_details.dart';
+import '../widgets/add_item.dart';
 
-class manage_menu extends StatefulWidget {
-  final Stream<QuerySnapshot> Food =
-      FirebaseFirestore.instance.collection('Food').snapshots();
-  @override
-  State<manage_menu> createState() => _manage_menuState();
-}
 
-class _manage_menuState extends State<manage_menu> {
+class manageMenu extends StatelessWidget {
+  manageMenu({Key? key}) : super(key: key) {
+    _stream = _reference.snapshots();
+  }
+
+  CollectionReference _reference =
+  FirebaseFirestore.instance.collection('Food');
+
+  //_reference.get()  ---> returns Future<QuerySnapshot>
+  //_reference.snapshots()--> Stream<QuerySnapshot> -- realtime updates
+  late Stream<QuerySnapshot> _stream;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'จัดการเมนูอาหาร',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
+        title: Text('เมนูอาหาร'),
       ),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection("Food").snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (!snapshot.hasData) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
+      body: StreamBuilder<QuerySnapshot>(
+        stream: _stream,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          //Check error
+          if (snapshot.hasError) {
+            return Center(child: Text('Some error occurred ${snapshot.error}'));
           }
-          return ListView(
-            children: snapshot.data!.docs.map((document) {
-              return Container(
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 60,
-                    child:
-                        FittedBox(child: Image.network(document['FoodImage'])),
-                  ),
-                  title: Text(document["FoodName"]),
-                  subtitle: Text(document["FoodPrice"] + "\rบาท"),
-                  trailing: Wrap(
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.edit),
-                        onPressed: () {
-                          final docFood = FirebaseFirestore.instance
-                              .collection('Food')
-                              .doc();
-                          docFood.update({});
-                        },
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          final docFood = FirebaseFirestore.instance
-                              .collection('Food')
-                              .doc();
-                          docFood.delete();
-                        },
-                        icon: Icon(Icons.delete),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            }).toList(),
-          );
+
+          //Check if data arrived
+          if (snapshot.hasData) {
+            //get the data
+            QuerySnapshot querySnapshot = snapshot.data;
+            List<QueryDocumentSnapshot> documents = querySnapshot.docs;
+
+            //Convert the documents to Maps
+            List<Map> items = documents.map((e) => e.data() as Map).toList();
+
+            //Display the list
+            return ListView.builder(
+                itemCount: items.length,
+                itemBuilder: (BuildContext context, int index) {
+                  //Get the item at this index
+                  Map thisItem = items[index];
+                  //REturn the widget for the list items
+                  return ListTile(
+                    title: Text('${thisItem['FoodName']}'),
+                    subtitle: Text('${thisItem['FoodPrice']}บาท'),
+                    leading: Container(
+                      height: 80,
+                      width: 80,
+                      child: thisItem.containsKey('FoodImage') ? Image.network(
+                          '${thisItem['FoodImage']}') : Container(),
+                    ),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => menuDetails(thisItem['FoodID'])));
+                    },
+                  );
+                });
+          }
+
+          //Show loader
+          return Center(child: CircularProgressIndicator());
         },
-      ),
+      ), //Display a list // Add a FutureBuilder
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return AddMenu();
-          }));
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => AddItem()));
         },
-        child: Icon(Icons.add_sharp),
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
       ),
     );
   }

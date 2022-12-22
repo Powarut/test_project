@@ -24,7 +24,7 @@ class MenuProvider with ChangeNotifier{
       }).then((value) async {
         isloadding = false;
         notifyListeners();
-        await Fluttertoast.showToast(msg: "เพิ่มข้อมูลที่จักส่งเรียบร้อย");
+        await Fluttertoast.showToast(msg: "เพิ่มข้อมูลที่จัดส่งเรียบร้อย");
         Navigator.of(context).pop();
         notifyListeners();
       });

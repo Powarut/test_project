@@ -68,7 +68,7 @@ class _ProductOverviewState extends State<ProductOverview> {
         backgroundColor: memberColor,
         iconTheme: IconThemeData(color: textColor),
         title: Text(
-          "Product Overview",
+          "รายละเอียดเมนู",
           style: TextStyle(color: textColor),
         ),
       ),
@@ -92,7 +92,7 @@ class _ProductOverviewState extends State<ProductOverview> {
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     width: double.infinity,
                     child: Text(
-                      "Availble Options",
+                      "ระบุวัตถุดิบ",
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         color: textColor,

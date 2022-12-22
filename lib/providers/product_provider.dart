@@ -5,7 +5,6 @@ import 'package:test_project/Model/product_modle.dart';
 class ProductProvider with ChangeNotifier {
   late ProductModel productModel;
 
-  List<ProductModel> search = [];
   productModels(QueryDocumentSnapshot element) {
 
     productModel = ProductModel(
@@ -16,7 +15,6 @@ class ProductProvider with ChangeNotifier {
       productQuantity: element.get("FoodQuantity"),
       productUnit: element.get("FoodType")
     );
-    search.add(productModel);
   }
 
   ///////////////////////// Food Product  ////////////////////////////
@@ -91,9 +89,5 @@ class ProductProvider with ChangeNotifier {
 
   List<ProductModel>get getDrinkProductDataList{
     return oneProductList;
-  }
-  /////////////////// Search Return ////////////
-  List<ProductModel> get gerAllProductSearch {
-    return search;
   }
 }

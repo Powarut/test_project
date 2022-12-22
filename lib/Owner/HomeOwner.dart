@@ -100,7 +100,7 @@ class _HomeOwnerState extends State<HomeOwner>
                     style: TextStyle(fontSize: 16)),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return manage_menu();
+                    return manageMenu();
                   }));
                 },
               ),

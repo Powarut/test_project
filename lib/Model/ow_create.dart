@@ -14,9 +14,8 @@ class Ow_create extends StatefulWidget {
 class _Ow_createState extends State<Ow_create> {
   final formKey =GlobalKey<FormState>();
   final foodName = TextEditingController();
-  final foodType = TextEditingController();
   final foodPrice = TextEditingController();
-  final foodNum = TextEditingController();
+
 
 
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
@@ -56,10 +55,7 @@ class _Ow_createState extends State<Ow_create> {
                           height: 15,
                         ),
                         textFormF('ชื่อ', 'กรุณาตั้งชื่อเมนูอาหาร', foodName),
-                        textFormF(
-                            'ประเภท', 'กรุณาตั้งประเภทเมนูอาหาร', foodType),
                         textFormF('ราคา', 'กรุณาตั้งราคา', foodPrice),
-                        textFormF('จำนวน', 'กรุณาระบุจำนวน', foodNum),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -79,9 +75,7 @@ class _Ow_createState extends State<Ow_create> {
                                       formKey.currentState!.save();
                                       await _Foodcollection.add({
                                         "FoodName":foodName.text,
-                                        "Foodtype":foodType.text,
                                         "FoodPrice":foodPrice.text,
-                                        "FoodNum":foodNum.text,
                                       });
                                       formKey.currentState!.reset();
                                     }

@@ -13,7 +13,7 @@ class _HomeMemberState extends State<HomeMember> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: DrawerSide(),
+      //drawer: DrawerSide(),
       appBar: AppBar(
         backgroundColor: memberColor,
         elevation: 0,

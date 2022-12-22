@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/Member/MemberLogin.dart';
-import 'package:test_project/Member/home_widget.dart';
 import 'package:test_project/Owner/OwnerLogin.dart';
 import 'package:test_project/Rider/RiderLogin.dart';
 import 'package:test_project/constants/color.dart';
-import 'package:test_project/widgets/add_menu.dart';
+import 'package:test_project/widgets/add_item.dart';
+
+
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -106,7 +107,7 @@ class WelcomeScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return HomeWidget();
+                        return AddItem();
                       }));
                     },
                   ),
