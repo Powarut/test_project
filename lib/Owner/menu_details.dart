@@ -9,7 +9,7 @@ class menuDetails extends StatelessWidget {
     _futureData = _reference.get();
   }
 
-  String itemId;
+  String? itemId;
   late DocumentReference _reference;
 
   //_reference.get()  --> returns Future<DocumentSnapshot>

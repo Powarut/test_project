@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:test_project/ProductModle/DrawerSide.dart';
 import 'package:test_project/constants/color.dart';
+import 'package:test_project/widgets/count.dart';
 
 class HomeMember extends StatefulWidget {
   @override
@@ -9,7 +10,6 @@ class HomeMember extends StatefulWidget {
 }
 
 class _HomeMemberState extends State<HomeMember> {
-  int count =0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,12 +22,11 @@ class _HomeMemberState extends State<HomeMember> {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15),
         child: StreamBuilder(
-          stream: FirebaseFirestore.instance.collection("Food").snapshots(),
+          stream: FirebaseFirestore.instance.collection('Food').snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (!snapshot.hasData) {
@@ -59,27 +58,6 @@ class _HomeMemberState extends State<HomeMember> {
                         style: TextStyle(fontSize: 16),
                       ),
                     ),
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          count --;
-                        });
-                      },
-                      icon: Icon(
-                        Icons.remove_circle,
-                      ),
-                    ),
-                    Text("${count}",style: TextStyle(color: textColor),),
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          count ++;
-                        });
-                      },
-                      icon: Icon(
-                        Icons.add_circle,
-                      ),
-                    ),
                   ],
                 );
               }).toList(),
@@ -92,7 +70,7 @@ class _HomeMemberState extends State<HomeMember> {
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: MaterialButton(
           child: Text("รวมยอดสั่ง: 0\rบาท"),
-          onPressed: (){},
+          onPressed: () {},
           color: memberColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
