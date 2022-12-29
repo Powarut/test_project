@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:test_project/constants/color.dart';
-import 'package:test_project/welcome_pange.dart';
+import 'package:test_project/selectUser.dart';
 import 'package:test_project/Order/order_delivery.dart';
 import 'package:test_project/Order/order_finish.dart';
 import 'package:test_project/Rider/delivery/Delivery.dart';
@@ -119,7 +119,7 @@ class _HomeRiderState extends State<HomeRider>
                   FirebaseAuth.instance.signOut().then((value) {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) {
-                      return WelcomeScreen();
+                      return selectUser();
                     }));
                   });
                 },

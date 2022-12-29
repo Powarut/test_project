@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/Member/member_order_detail.dart';
+import 'package:test_project/Member/Order_detail_mem.dart';
 import 'package:test_project/constants/color.dart';
 
-class MemberOrder extends StatefulWidget {
+class OrderMember extends StatefulWidget {
   @override
-  State<MemberOrder> createState() => _MemberOrderState();
+  State<OrderMember> createState() => _OrderMemberState();
 }
 
-class _MemberOrderState extends State<MemberOrder> {
+class _OrderMemberState extends State<OrderMember> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +28,7 @@ class _MemberOrderState extends State<MemberOrder> {
                 subtitle: Text("วันที่:10/11/2022 "+"\r เวลา: 15:05"),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return MemberOrderDetail();
+                    return Order_detail_mem();
                   }));
                 },
               ),

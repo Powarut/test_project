@@ -5,7 +5,7 @@ import 'package:test_project/providers/check_out_provider.dart';
 import 'package:test_project/providers/product_provider.dart';
 import 'package:test_project/providers/reviewcart_provider.dart';
 import 'package:test_project/providers/user_provider.dart';
-import 'package:test_project/welcome_pange.dart';
+import 'package:test_project/selectUser.dart';
 
 
 void main() async {
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
               debugShowCheckedModeBanner: false,
-          home: WelcomeScreen(),
+          home: selectUser(),
         ),
     );
   }

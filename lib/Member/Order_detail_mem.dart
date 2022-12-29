@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:test_project/Rider/delivery/order_delivery.dart';
 import 'package:test_project/constants/color.dart';
 
-class MemberOrderDetail extends StatefulWidget {
-  const MemberOrderDetail({Key? key}) : super(key: key);
+class Order_detail_mem extends StatefulWidget {
+  const Order_detail_mem({Key? key}) : super(key: key);
 
   @override
-  State<MemberOrderDetail> createState() => _MemberOrderDetailState();
+  State<Order_detail_mem> createState() => _Order_detail_memState();
 }
 
-class _MemberOrderDetailState extends State<MemberOrderDetail> {
+class _Order_detail_memState extends State<Order_detail_mem> {
   void showAlertDialog(BuildContext context) {
     // set up the buttons
     Widget cancelButton = TextButton(

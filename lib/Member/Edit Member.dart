@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:test_project/Member/MemberLogin.dart';
+import 'package:test_project/Member/LoginMember.dart';
 import 'package:test_project/constants/color.dart';
 
 class EditMember extends StatefulWidget {
