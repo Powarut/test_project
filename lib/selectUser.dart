@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/Member/LoginMember.dart';
-import 'package:test_project/Owner/OwnerLogin.dart';
-import 'package:test_project/Rider/RiderLogin.dart';
+import 'package:test_project/Owner/LoginOwner.dart';
+import 'package:test_project/Rider/LoginRider.dart';
 import 'package:test_project/constants/color.dart';
 import 'package:test_project/widgets/add_item.dart';
 

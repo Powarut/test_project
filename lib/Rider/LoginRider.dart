@@ -5,7 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:test_project/Data/DataRider.dart';
 import 'package:test_project/Rider/HomeRider.dart';
-import 'package:test_project/Rider/RiderRegister.dart';
+import 'package:test_project/Rider/RegisterRider.dart';
 import 'package:test_project/constants/color.dart';
 
 class RiderLogin extends StatefulWidget {
